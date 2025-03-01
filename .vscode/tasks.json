@@ -1,0 +1,25 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build GTK Project",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+            "-o",
+            "${workspaceFolder}/gtk_example",
+            "${workspaceFolder}/main.cpp",
+            `pkg-config --cflags --libs gtk+-4.0`
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+            "$gcc"
+            ]
+        }
+    ]
+}
