@@ -40,6 +40,7 @@ int main()
     unordered_set<string> valid_parts = {"engine", "transmission", "drivetrain", "wheels", "suspension", "doors", "windows", "accessories", "engine accessories", "exhaust system", "lights", "horn"};
 
     string part;
+    ofstream file("diagnostic_report.txt", ios::app); // Open in append mode
 
     switch (input)
     {
@@ -61,7 +62,7 @@ int main()
         cout << "Lights/Horn\n";
 
         cin >> part;
-        ofstream file("diagnostic_report.txt", ios::app); // Open in append mode
+      
 
         if (!file)
         {
