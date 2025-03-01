@@ -1,0 +1,12 @@
+First, ask if it's preventative or diagnostic.
+
+If preventative:
+    before starting:
+        check fluids (if low: fill)
+        inspect tires (for tread depth, )
+
+
+
+First, check functionality:
+    Is item present (if visible)?
+    If you attempt to start the vehicle, does the vehicle start?
