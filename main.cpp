@@ -38,7 +38,7 @@ int main()
     }
 
     unordered_set<string> valid_parts = {"engine", "transmission", "drivetrain", "wheels", "suspension", "doors", "windows", "accessories", "engine accessories", "exhaust system", "lights", "horn"};
-    
+
     string part;
 
     switch (input)
@@ -59,10 +59,17 @@ int main()
         cout << "Engine Accessories\n";
         cout << "Exhaust system\n";
         cout << "Lights/Horn\n";
-        
-        cin >> part;
 
-        while (valid_parts.find(part) == valid_parts.end()) 
+        cin >> part;
+        ofstream file("diagnostic_report.txt", ios::app); // Open in append mode
+
+        if (!file)
+        {
+            cerr << "Error opening file!" << endl;
+            return 1;
+        }
+
+        while (valid_parts.find(part) == valid_parts.end())
         {
             cout << "Invalid part, please enter a valid part: ";
             cin >> part;
@@ -70,27 +77,35 @@ int main()
 
         if (part == "engine")
         {
+            file << "Checking the engine.\n"; // Only output to file for engine
         }
         else if (part == "transmission")
         {
+            file << "Checking the transmission.\n"; // Only output to file for transmission
         }
         else if (part == "drivetrain" || part == "wheels" || part == "suspension")
         {
+            file << "Checking the drivetrain, wheels, or suspension.\n"; // Only output to file for drivetrain/wheels/suspension
         }
         else if (part == "doors" || part == "windows")
         {
+            file << "Checking the doors or windows.\n"; // Only output to file for doors/windows
         }
         else if (part == "accessories")
         {
+            file << "Checking the accessories.\n"; // Only output to file for accessories
         }
         else if (part == "engine accessories")
         {
+            file << "Checking the engine accessories.\n"; // Only output to file for engine accessories
         }
         else if (part == "exhaust system")
         {
+            file << "Checking the exhaust system.\n"; // Only output to file for exhaust system
         }
         else if (part == "lights" || part == "horn")
         {
+            file << "Checking the lights or horn.\n"; // Only output to file for lights/horn
         }
 
         break;
