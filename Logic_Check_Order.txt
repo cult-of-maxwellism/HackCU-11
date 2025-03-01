@@ -2,8 +2,16 @@ First, ask if it's preventative or diagnostic.
 
 If preventative:
     before starting:
-        check fluids (if low: fill)
-        inspect tires (for tread depth, )
+        check fluids 
+            if low: fill
+            if antifreeze/coolant is low, warn user to wait until engine is cold to fill fluids
+        inspect tires (for tread depth, wear, visible cracks, visible metal/missing chunks)
+            if chunks are missing, large holes are present, or tread has less than 1mm of depth, recommend not driving and purchasing new tires
+        check brake pads (shove a straw into brakes until you hit the pads, then mark the straw and measure depth)
+            subtract .2 inches from measurement, and
+                if remaining measurement is less than 1/4th inch, replace soon.
+                If remaining is less than 1/8th inch, recommend not driving and replacing immediately.
+        
 
 
 
