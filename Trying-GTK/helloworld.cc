@@ -1,8 +1,7 @@
 #include "helloworld.h"
 #include <iostream>
 
-HelloWorld::HelloWorld()
-: m_button("Hello World")   // creates a new button with label "Hello World".
+HelloWorld::HelloWorld(): m_button("Hello World")   // creates a new button with label "Hello World".
 {
   // Sets the margin around the button.
   m_button.set_margin(10);

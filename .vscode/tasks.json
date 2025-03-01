@@ -8,18 +8,24 @@
             "type": "shell",
             "command": "g++",
             "args": [
-            "-o",
-            "${workspaceFolder}/gtk_example",
-            "${workspaceFolder}/main.cpp",
-            `pkg-config --cflags --libs gtk+-4.0`
+                "-g",
+                "main.cpp",
+                "`pkg-config`",
+                "--cflags",
+                "--libs",
+                "gtk4",
+                "-o",
+                "main",
+                "${workspaceFolder}/gtk_example",
+                "${workspaceFolder}/main.cpp",
+                "gtk4"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [
-            "$gcc"
-            ]
+            "problemMatcher": ["$gcc"],
+            "detail": "Build task for GTK4 file"
         }
     ]
 }
