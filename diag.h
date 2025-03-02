@@ -1,5 +1,4 @@
 using namespace std;
-#include "univ-function.cpp"
 
 void engine(string filepath);
 void transmission(string filepath);
