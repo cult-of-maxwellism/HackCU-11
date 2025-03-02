@@ -1,9 +1,12 @@
 First, ask if it's preventative or diagnostic.
 
 If preventative:
+    allow user to choose if they're doing before, during, after, or all.
     before starting:
-        inspect tires (for tread depth, wear, visible cracks, visible metal/missing chunks)
+        inspect tires (for tread depth, tire pressure, visibly uneven wear, visible cracks/holes, visible metal/missing chunks on surface that makes road contact)
             if chunks are missing, large holes are present, or tread has less than 1mm of depth, recommend not driving and purchasing new tires
+            if you see part of (but not all of) Abe's head, then recommend replacement in the next month
+
         check brake pads (shove a straw into brakes until you hit the pads, then mark the straw and measure depth)
             subtract .2 inches from measurement, and
                 if remaining measurement is less than 1/4th inch, replace soon.
@@ -44,62 +47,6 @@ If preventative:
                     battery may be low, jump the car using a jump kit or cables try again
     While vehicle's running/driving:
 
-
-    After shutting vehicle off:
-        inspect tires (for new cracks/holesFirst, ask if it's preventative or diagnostic.
-
-If preventative:
-    before starting:
-        inspect tires (for tread depth, wear, visible cracks, visible metal/missing chunks)
-            if chunks are missing, large holes are present, or tread has less than 1mm of depth, recommend not driving and purchasing new tires
-        check brake pads (shove a straw into brakes until you hit the pads, then mark the straw and measure depth)
-            subtract .2 inches from measurement, and
-                if remaining measurement is less than 1/4th inch, replace soon.
-                If remaining is less than 1/8th inch, recommend not driving and replacing immediately.
-        get under car and see if anything is broken
-            if a large plastic sheet is dangling, that's your shield and it needs to be reattached. Recommend mechanic or dealer intervention
-            if a metal tube/pole is dangling:
-                if it's the dead center of your car and looks like it was supposed to be connected to the rear wheels
-                    it's your drivetrain and needs to be replaced. Do not drive.
-                if it's a thinner, hollow-looking pole (possibly with oblong protusions)
-                    it's your exhaust and should be reattached to the bottom
-                if smaller bars near the front (steering) tires appear snapped or disconnected,
-                    that's your tie/steering rods. Drive very carefully and get service immediately
-                if the drivetrain or rod that runs between any two tires appears bent
-                    get service immediately.
-        Open hood and
-            check fluids 
-                if low: fill
-                if antifreeze/coolant is low, warn user to wait until engine is cold to fill fluids
-            inspect battery connectors
-                if they appear to be grimy or corroded, disconnect and clean.
-                if severly corroded, replace as soon as possible
-            check for oily/grimy residue or leaks
-                if present, how bad is it?
-                    class 1 - this is minor signs of residue, and usually not expensive. General rule: fix if you want
-                    class 2 - this is when moisture is actively present. General rule: fix within the next month
-                    class 3 - this is when liquid is actively beading. General rule: only drive short distances, fix before driving > 2 miles.
-                if the leak is around the top of the engine, likely a headgasket leak.
-                    In this case, class 1 and 2 should be monitored closely and fixed within the month and week. Do not drive with class 3.
-                if the leak is around any of the rubber hoses, it's likely coolant.
-                    class rules apply
-                if the leak is near the transmission or anywhere on the engine below the head gasket
-                    check for visible holes and cracks. If there are holes/cracks, do not drive and get service immediately.
-                    class rules apply with no holes/cracks present
-        finally: start vehicle.
-            if vehicle doesn't start, how does it fail to start?
-                if the starter chugs for a second:
-                    battery may be low.
-                        if accessories (radio, AC, lights on dash) turn on
-                            turn them off and try again, if it doesn't work,
-                                jump vehicle (include instructions) and try again
-                        if accessories don't turn on
-                            battery is dead, remove and replace it.
-                
-    
-    While vehicle's running/driving:
-
-
     After shutting vehicle off:
         inspect tires (for new cracks/holes)
             if a tire has a new crack or hole, put the spare on and replace tire when possible.
@@ -130,10 +77,7 @@ If preventative:
     Once vehicle is cold (1+hr later):
         Check fluid levels again. If levels are noticably different/lower, monitor those levels closely. If trend persists across 3 days, recommend service.
 
-        
-
-
-
+Diagnostic:
 First, check functionality:
     Is item present (if visible)?
     If you attempt to start the vehicle, does the vehicle start?
