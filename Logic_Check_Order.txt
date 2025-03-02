@@ -4,15 +4,25 @@ If preventative:
     allow user to choose if they're doing before, during, after, or all.
     before starting:
         inspect tires (for tread depth, tire pressure, visibly uneven wear, visible cracks/holes, visible metal/missing chunks on surface that makes road contact)
-            if chunks are missing, large holes are present, or tread has less than 1mm of depth, recommend not driving and purchasing new tires
+            if tire is unevenly worn
+                check tie rods.
+                    If they appear to be fine, get an alignment and replace worn tires in the next month.
+                    otherwise, replace the tie rods.
+            if tire pressure is low but above 10,
+                If this is a issue that's been noticed before, service in the next month.
+                fill the tire with air.
+            across tires for non air pressure:
+                if one tire is bad, throw on the spare and recommend servicing that tire within two weeks.
+                If more than one is bad, then recommend not driving and service.
+            chunks are missing, large holes are present, or tread has less than 1mm of depth, recommend not driving and purchasing new tires
             if you see part of (but not all of) Abe's head, then recommend replacement in the next month
-
+            if something is stuck in the tire, do not remove, but go to nearest tire shop and service tire.
         check brake pads (shove a straw into brakes until you hit the pads, then mark the straw and measure depth)
             subtract .2 inches from measurement, and
                 if remaining measurement is less than 1/4th inch, replace soon.
                 If remaining is less than 1/8th inch, recommend not driving and replacing immediately.
         get under car and see if anything is broken
-            if a large plastic sheet is dangling, that's your shield and it needs to be reattached. Recommend mechanic or dealer intervention
+            if a large plastic sheet is dangling, that's your heat/debris shield and it needs to be reattached. Recommend mechanic or dealer intervention
             if a metal tube/pole is dangling:
                 if it's the dead center of your car and looks like it was supposed to be connected to the rear wheels
                     it's your drivetrain and needs to be replaced. Do not drive.
