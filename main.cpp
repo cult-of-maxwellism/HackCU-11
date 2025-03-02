@@ -10,8 +10,8 @@ void before();
 void after();
 void during();
 void all();
-void diagnostic();
-void preventative();
+void diagnostic(string carname, string filepath);
+void preventative(string carname, string filepath);
 string get_valid_vehicle_type();
 
 
@@ -29,13 +29,15 @@ int main()
         cin >> input;
     }
 
-    string fuel_type = get_valid_vehicle_type();
+    string carname = get_valid_vehicle_type();
+    string filepath;
+    filepath = "./vehicle-directory/";
+    filepath += carname;
 
     if (input == 1)
-        preventative(fuel_type);
+        preventative(carname,filepath);
     else
-        diagnostic(fuel_type);
-
+        diagnostic(carname,filepath);
     return 0;
 }
 
@@ -284,19 +286,12 @@ void preventative(string type)
     
 }
 
-string get_valid_vehicle_type()
+string get_vehicle_number()
 {
-    string fuel_type;
-    cout << "Enter vehicle type: Gas, Diesel, or Electric: ";
-    cin >> fuel_type;
+    //this needs to check each line of the string to ensure vehicle name doesn't have spaces or \ or / characters -anything file doesn't like
+    string VehicleNum;
+    cout << "Enter vehicle identification number: ";
+    cin >> VehicleNum;
 
-    transform(fuel_type.begin(), fuel_type.end(), fuel_type.begin(), ::tolower);
-
-    while (fuel_type != "gas" && fuel_type != "diesel" && fuel_type != "electric")
-    {
-        cout << "Invalid input. Please enter Gas, Diesel, or Electric: ";
-        cin >> fuel_type;
-        transform(fuel_type.begin(), fuel_type.end(), fuel_type.begin(), ::tolower);
-    }
-    return fuel_type;
+    return VehicleNum;
 }
