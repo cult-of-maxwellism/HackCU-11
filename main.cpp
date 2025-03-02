@@ -6,6 +6,194 @@
 #include <cctype>
 
 using namespace std;
+void before();
+void after();
+void during();
+void all();
+void diagnostic();
+void preventative();
+string get_valid_vehicle_type();
+
+
+int main()
+{
+    cout << "Welcome to the Preventative Maintenance Diagnostic Tool.\n";
+    cout << "Enter 1 for preventative maintenance or 2 to diagnose an issue: ";
+
+    int input;
+    cin >> input;
+
+    while (input != 1 && input != 2)
+    {
+        cout << "Invalid input. Please enter 1 for preventative maintenance or 2 to diagnose an issue: ";
+        cin >> input;
+    }
+
+    string fuel_type = get_valid_vehicle_type();
+
+    if (input == 1)
+        preventative(fuel_type);
+    else
+        diagnostic(fuel_type);
+
+    return 0;
+}
+
+void before(){
+
+    ifstream inputFile("prev_before.txt");
+    ofstream outputFile("prev.txt", ios::trunc); // Ensure truncation for fresh writing
+
+    if (!inputFile)
+    {
+        cerr << "Error: Unable to open 'prev_before.txt'. Ensure the file exists.\n";
+        return;
+    }
+    if (!outputFile)
+    {
+        cerr << "Error: Unable to create 'prev.txt'. Check file permissions.\n";
+        return;
+    }
+
+    string line;
+    bool wroteData = false;
+    while (getline(inputFile, line))
+    {
+        outputFile << line << "\n"; // Write to file
+        wroteData = true;
+    }
+
+    // Flush and close files properly
+    outputFile.flush();
+    inputFile.close();
+    outputFile.close();
+
+    if (wroteData)
+    {
+        cout << "Preventative maintenance log successfully saved to 'prev.txt'.\n";
+    }
+    else
+    {
+        cout << "Warning: 'prev_before.txt' was empty. No data written to 'preventative.txt'.\n";
+    }
+}
+
+void during(){
+
+    ifstream inputFile("prev_during.txt");
+    ofstream outputFile("prev.txt", ios::trunc); // Ensure truncation for fresh writing
+
+    if (!inputFile)
+    {
+        cerr << "Error: Unable to open 'prev_during.txt'. Ensure the file exists.\n";
+        return;
+    }
+    if (!outputFile)
+    {
+        cerr << "Error: Unable to create 'prev.txt'. Check file permissions.\n";
+        return;
+    }
+
+    string line;
+    bool wroteData = false;
+    while (getline(inputFile, line))
+    {
+        outputFile << line << "\n"; // Write to file
+        wroteData = true;
+    }
+
+    // Flush and close files properly
+    outputFile.flush();
+    inputFile.close();
+    outputFile.close();
+
+    if (wroteData)
+    {
+        cout << "Preventative maintenance log successfully saved to 'prev.txt'.\n";
+    }
+    else
+    {
+        cout << "Warning: 'prev_during.txt' was empty. No data written to 'preventative.txt'.\n";
+    }
+}
+
+void after(){
+
+    ifstream inputFile("prev_after.txt");
+    ofstream outputFile("prev.txt", ios::trunc); // Ensure truncation for fresh writing
+
+    if (!inputFile)
+    {
+        cerr << "Error: Unable to open 'prev_after.txt'. Ensure the file exists.\n";
+        return;
+    }
+    if (!outputFile)
+    {
+        cerr << "Error: Unable to create 'prev.txt'. Check file permissions.\n";
+        return;
+    }
+
+    string line;
+    bool wroteData = false;
+    while (getline(inputFile, line))
+    {
+        outputFile << line << "\n"; // Write to file
+        wroteData = true;
+    }
+
+    // Flush and close files properly
+    outputFile.flush();
+    inputFile.close();
+    outputFile.close();
+
+    if (wroteData)
+    {
+        cout << "Preventative maintenance log successfully saved to 'prev.txt'.\n";
+    }
+    else
+    {
+        cout << "Warning: 'prev_after.txt' was empty. No data written to 'preventative.txt'.\n";
+    }
+}
+
+void all(){
+
+    ifstream inputFile("prev_all.txt");
+    ofstream outputFile("prev.txt", ios::trunc); // Ensure truncation for fresh writing
+
+    if (!inputFile)
+    {
+        cerr << "Error: Unable to open 'prev_all.txt'. Ensure the file exists.\n";
+        return;
+    }
+    if (!outputFile)
+    {
+        cerr << "Error: Unable to create 'prev.txt'. Check file permissions.\n";
+        return;
+    }
+
+    string line;
+    bool wroteData = false;
+    while (getline(inputFile, line))
+    {
+        outputFile << line << "\n"; // Write to file
+        wroteData = true;
+    }
+
+    // Flush and close files properly
+    outputFile.flush();
+    inputFile.close();
+    outputFile.close();
+
+    if (wroteData)
+    {
+        cout << "Preventative maintenance log successfully saved to 'prev.txt'.\n";
+    }
+    else
+    {
+        cout << "Warning: 'prev_all.txt' was empty. No data written to 'preventative.txt'.\n";
+    }
+}
 
 void diagnostic(string type)
 {
@@ -78,41 +266,22 @@ void diagnostic(string type)
 }
 void preventative(string type)
 {
-    ifstream inputFile("prev_before.txt");
-    ofstream outputFile("prev.txt", ios::trunc); // Ensure truncation for fresh writing
+    cout << "Enter a number from the menu:\n";
+    cout << "1. Before driving\n";
+    cout << "2. During driving\n";
+    cout << "3. After driving\n";
+    cout << "4. All\n"; 
+    int option;
+    cin >> option;
+    switch(option){
 
-    if (!inputFile)
-    {
-        cerr << "Error: Unable to open 'prev_before.txt'. Ensure the file exists.\n";
-        return;
+        case 1:
+        
+        case 2:
+        case 3:
+        case 4:
     }
-    if (!outputFile)
-    {
-        cerr << "Error: Unable to create 'preventative.txt'. Check file permissions.\n";
-        return;
-    }
-
-    string line;
-    bool wroteData = false;
-    while (getline(inputFile, line))
-    {
-        outputFile << line << "\n"; // Write to file
-        wroteData = true;
-    }
-
-    // Flush and close files properly
-    outputFile.flush();
-    inputFile.close();
-    outputFile.close();
-
-    if (wroteData)
-    {
-        cout << "Preventative maintenance log successfully saved to 'prev.txt'.\n";
-    }
-    else
-    {
-        cout << "Warning: 'prev_before.txt' was empty. No data written to 'preventative.txt'.\n";
-    }
+    
 }
 
 string get_valid_vehicle_type()
@@ -130,28 +299,4 @@ string get_valid_vehicle_type()
         transform(fuel_type.begin(), fuel_type.end(), fuel_type.begin(), ::tolower);
     }
     return fuel_type;
-}
-
-int main()
-{
-    cout << "Welcome to the Preventative Maintenance Diagnostic Tool.\n";
-    cout << "Enter 1 for preventative maintenance or 2 to diagnose an issue: ";
-
-    int input;
-    cin >> input;
-
-    while (input != 1 && input != 2)
-    {
-        cout << "Invalid input. Please enter 1 for preventative maintenance or 2 to diagnose an issue: ";
-        cin >> input;
-    }
-
-    string fuel_type = get_valid_vehicle_type();
-
-    if (input == 1)
-        preventative(fuel_type);
-    else
-        diagnostic(fuel_type);
-
-    return 0;
 }
