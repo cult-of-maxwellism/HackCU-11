@@ -1,4 +1,4 @@
-import com.krab.lazy.*;
+/*import com.krab.lazy.*;
 import processing.pdf.*;
 
 LazyGui gui;
@@ -10,4 +10,9 @@ void setup(){
 
 void draw(){
     background(gui.colorPicker("background").hex);
+}
+*/
+void setup() {
+  size(100, 100);
+  parseFile();
 }
