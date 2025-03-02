@@ -10,8 +10,8 @@ void before();
 void after();
 void during();
 void all();
-void diagnostic();
-void preventative();
+void diagnostic(string type);
+void preventative(string type);
 string get_valid_vehicle_type();
 
 
@@ -40,9 +40,9 @@ int main()
 }
 
 void before(){
-
+    int num = 3;
     ifstream inputFile("prev_before.txt");
-    ofstream outputFile("prev.txt", ios::trunc); // Ensure truncation for fresh writing
+    ofstream outputFile("prev.txt", ios::app); // Ensure truncation for fresh writing
 
     if (!inputFile)
     {
@@ -59,7 +59,7 @@ void before(){
     bool wroteData = false;
     while (getline(inputFile, line))
     {
-        outputFile << line << "\n"; // Write to file
+        outputFile << "" << "\n"; // Write to file
         wroteData = true;
     }
 
@@ -81,7 +81,7 @@ void before(){
 void during(){
 
     ifstream inputFile("prev_during.txt");
-    ofstream outputFile("prev.txt", ios::trunc); // Ensure truncation for fresh writing
+    ofstream outputFile("prev.txt", ios::app); // Ensure truncation for fresh writing
 
     if (!inputFile)
     {
@@ -120,7 +120,7 @@ void during(){
 void after(){
 
     ifstream inputFile("prev_after.txt");
-    ofstream outputFile("prev.txt", ios::trunc); // Ensure truncation for fresh writing
+    ofstream outputFile("prev.txt", ios::app); // Ensure truncation for fresh writing
 
     if (!inputFile)
     {
@@ -159,7 +159,7 @@ void after(){
 void all(){
 
     ifstream inputFile("prev_all.txt");
-    ofstream outputFile("prev.txt", ios::trunc); // Ensure truncation for fresh writing
+    ofstream outputFile("prev.txt", ios::app); // Ensure truncation for fresh writing
 
     if (!inputFile)
     {
@@ -198,7 +198,7 @@ void all(){
 void diagnostic(string type)
 {
     int part;
-    ofstream file("diagnostic_report.txt", ios::trunc);
+    ofstream file("diagnostic_report.txt", ios::app);
     if (!file)
     {
         cerr << "Error opening diagnostic report file!" << endl;
@@ -276,7 +276,6 @@ void preventative(string type)
     switch(option){
 
         case 1:
-        
         case 2:
         case 3:
         case 4:
@@ -284,7 +283,7 @@ void preventative(string type)
     
 }
 
-string get_valid_vehicle_type()
+string get_vehicle_number_type()
 {
     string fuel_type;
     cout << "Enter vehicle type: Gas, Diesel, or Electric: ";

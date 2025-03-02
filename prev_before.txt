@@ -1,3 +1,7 @@
+
+
+
+
 before starting:
         inspect tires (for tread depth, tire pressure, visibly uneven wear, visible cracks/holes, visible metal/missing chunks on surface that makes road contact)
             if tire is unevenly worn
