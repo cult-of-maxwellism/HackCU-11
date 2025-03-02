@@ -1,5 +1,7 @@
 #include <cctype>
-#include <diagnostic.hpp>
+#include <fstream>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -21,14 +23,6 @@ ofstream open_file(const string &filepath) {
   }
   return file;
 }
-
-// Helper function to request user input for yes/no type decisions
-/*int request_user_input(const string &prompt) {
-    int userInput;
-    cout << prompt;
-    cin >> userInput;
-    return userInput;
-}*/
 
 void diagnostic(string carname, string filepath) {
   int part;
@@ -88,154 +82,11 @@ void diagnostic(string carname, string filepath) {
     break;
   default:
     cout << "Invalid Input! How did you get this error?" << endl;
+    return;
   }
 
   cout << "Diagnostic report saved to " << filepath << endl;
   file.close();
-}
-
-void engine(string filepath) {
-  int userIn;
-  ofstream file = open_file(filepath);
-  if (!file)
-    return;
-
-  cout << "Select engine behavior:\n"
-       << "1. Overheating\n"
-       << "2. Misfiring\n"
-       << "3. Engine Flooded\n"
-       << "4. Headgasket Leak\n"
-       << "5. Holes or Other\n"
-       << "9. Exit\n";
-
-  cin >> userIn;
-
-  switch (userIn) {
-  case 1: {
-    file << "Be aware: the engine is overheating on this vehicle." << endl;
-    userIn =
-        request_user_input("Verify coolant levels. If coolant levels are not "
-                           "the issue, select 1. Otherwise, 2 to exit: ");
-    if (userIn == 2) {
-      file << "Issue: radiator inoperable. Order: radiator, cooling assembly."
-           << endl;
-    } else {
-      userIn = request_user_input(
-          "Inspect and flush the radiator. If there's no issue with the "
-          "radiator, select 1. Otherwise, select 2 to write and exit: ");
-      if (userIn == 2) {
-        file << "Issue: radiator inoperable. Order: radiator, cooling assembly."
-             << endl;
-      } else {
-        userIn = request_user_input(
-            "Check thermostat/water pump. If those are fine, select 1 to "
-            "notate vehicle needs third-party inspection. Otherwise, 2 to "
-            "write and exit: ");
-        if (userIn == 1) {
-          file << "Issue unknown, third-party inspection and fix required."
-               << endl;
-        } else {
-          file << "Issue: thermostat and water pump inoperable. Order: water "
-                  "pump, cooling assembly wiring."
-               << endl;
-        }
-      }
-    }
-    break;
-  }
-  case 2: {
-    file << "Be aware: the engine is misfiring on this vehicle." << endl;
-    userIn = request_user_input(
-        "Inspect spark plugs and ignition coils. If these are in working "
-        "condition, select 1. Otherwise, 2 to exit: ");
-    if (userIn == 2) {
-      file << "Issue: misfire caused by faulty spark plugs or ignition coils. "
-              "Order: spark plugs, ignition coils."
-           << endl;
-    } else {
-      userIn =
-          request_user_input("Check fuel injectors. If injectors are working, "
-                             "select 1. Otherwise, select 2 to exit: ");
-      if (userIn == 2) {
-        file << "Issue: faulty fuel injectors. Order: fuel injectors." << endl;
-      } else {
-        file << "Issue unknown, third-party inspection required." << endl;
-      }
-    }
-    break;
-  }
-  case 3: {
-    file << "Be aware: the engine is flooded." << endl;
-    userIn = request_user_input(
-        "Turn off the engine and wait for a while. Then, try restarting. If "
-        "engine starts, select 1. Otherwise, select 2 to exit: ");
-    if (userIn == 2) {
-      file << "Issue: flooded engine. Order: spark plugs, air filter." << endl;
-    } else {
-      userIn = request_user_input(
-          "If problem persists, check fuel pressure regulator. If not faulty, "
-          "select 1. Otherwise, select 2 to exit: ");
-      if (userIn == 2) {
-        file << "Issue: faulty fuel pressure regulator. Order: fuel pressure "
-                "regulator."
-             << endl;
-      } else {
-        file << "Issue unknown, third-party inspection required." << endl;
-      }
-    }
-    break;
-  }
-  case 4: {
-    file << "Be aware: the engine has a headgasket leak." << endl;
-    userIn = request_user_input(
-        "Check for visible signs of coolant leaks. If no leak is found, select "
-        "1. Otherwise, select 2 to exit: ");
-    if (userIn == 2) {
-      file << "Issue: headgasket leak detected. Order: headgasket replacement."
-           << endl;
-    } else {
-      userIn = request_user_input(
-          "Check for white smoke from the exhaust. If smoke is present, select "
-          "1. Otherwise, select 2 to exit: ");
-      if (userIn == 2) {
-        file
-            << "Issue: headgasket leak detected. Order: headgasket replacement."
-            << endl;
-      } else {
-        file << "Issue: suspected headgasket failure. Order: headgasket, "
-                "related gaskets."
-             << endl;
-      }
-    }
-    break;
-  }
-  case 5: {
-    file << "Be aware: engine has holes or other issues." << endl;
-    userIn = request_user_input(
-        "Inspect the engine block for visible damage. If no damage is found, "
-        "select 1. Otherwise, select 2 to exit: ");
-    if (userIn == 2) {
-      file << "Issue: holes in the engine block. Order: engine block repair or "
-              "replacement."
-           << endl;
-    } else {
-      userIn = request_user_input(
-          "Check for any other unusual noises or vibrations. If abnormal "
-          "sounds persist, select 1. Otherwise, select 2 to exit: ");
-      if (userIn == 2) {
-        file << "Issue: abnormal noises or vibrations. Order: inspect engine "
-                "components for loose parts."
-             << endl;
-      } else {
-        file << "Issue unknown, third-party inspection required." << endl;
-      }
-    }
-    break;
-  }
-  default:
-    cout << "Invalid input, please retry!" << endl;
-  }
-  cout << "Issue noted. Items listed to order." << endl;
 }
 
 int main() {
@@ -264,6 +115,167 @@ int main() {
   }
 
   return 0;
+}
+
+void engine(string filepath) {
+  int userIn;
+  ofstream file = open_file(filepath);
+  if (!file)
+    return;
+
+  cout << "Select engine behavior:\n"
+       << "1. Overheating\n"
+       << "2. Misfiring\n"
+       << "3. Engine Flooded\n"
+       << "4. Headgasket Leak\n"
+       << "5. Holes or Other\n"
+       << "9. Exit\n";
+
+  cin >> userIn;
+
+  switch (userIn) {
+  case 1: {
+    file << "Be aware: the engine is overheating on this vehicle." << endl;
+    cout << "Verify coolant levels. If coolant levels are not the issue, "
+            "select 1. Otherwise, 2 to exit:"
+         << endl;
+    cin >> userIn;
+    if (userIn == 2) {
+      file << "Issue: radiator inoperable. Order: radiator, cooling assembly."
+           << endl;
+    } else {
+      cout << "Inspect and flush the radiator. If there's no issue with the "
+              "radiator, select 1. Otherwise, select 2 to write and exit:"
+           << endl;
+      cin >> userIn;
+      if (userIn == 2) {
+        file << "Issue: radiator inoperable. Order: radiator, cooling assembly."
+             << endl;
+      } else {
+        cout << "Check thermostat/water pump. If those are fine, select 1 to "
+                "notate vehicle needs third-party inspection. Otherwise, 2 to "
+                "write and exit: "
+             << endl;
+        cin >> userIn;
+        if (userIn == 1) {
+          file << "Issue unknown, third-party inspection and fix required."
+               << endl;
+        } else {
+          file << "Issue: thermostat and water pump inoperable. Order: water "
+                  "pump, cooling assembly wiring."
+               << endl;
+        }
+      }
+    }
+    break;
+  }
+  case 2: {
+    file << "Be aware: the engine is misfiring on this vehicle." << endl;
+    cout << "Inspect spark plugs and ignition coils. If these are in working "
+            "condition, select 1. Otherwise, 2 to exit: "
+         << endl;
+    cin >> userIn;
+    if (userIn == 2) {
+      file << "Issue: misfire caused by faulty spark plugs or ignition coils. "
+              "Order: spark plugs, ignition coils."
+           << endl;
+    } else {
+      cout << "Check fuel injectors. If injectors are working, "
+              "select 1. Otherwise, select 2 to exit: "
+           << endl;
+      cin >> userIn;
+      if (userIn == 2) {
+        file << "Issue: faulty fuel injectors. Order: fuel injectors." << endl;
+      } else {
+        file << "Issue unknown, third-party inspection required." << endl;
+      }
+    }
+    break;
+  }
+  case 3: {
+    file << "Be aware: the engine is flooded." << endl;
+    cout
+        << "Turn off the engine and wait for a while. Then, try restarting. If "
+           "engine starts, select 1. Otherwise, select 2 to exit: "
+        << endl;
+    cin >> userIn;
+    if (userIn == 2) {
+      file << "Issue: flooded engine. Order: spark plugs, air filter." << endl;
+    } else {
+      cout << "If problem persists, check fuel pressure regulator. If not "
+              "faulty, "
+              "select 1. Otherwise, select 2 to exit: "
+           << endl;
+      cin >> userIn;
+      if (userIn == 2) {
+        file << "Issue: faulty fuel pressure regulator. Order: fuel pressure "
+                "regulator."
+             << endl;
+      } else {
+        file << "Issue unknown, third-party inspection required." << endl;
+      }
+    }
+    break;
+  }
+  case 4: {
+    file << "Be aware: the engine has a headgasket leak." << endl;
+    cout << "Check for visible signs of coolant leaks. If no leak is found, "
+            "select "
+            "1. Otherwise, select 2 to exit: "
+         << endl;
+    cin >> userIn;
+    if (userIn == 2) {
+      file << "Issue: headgasket leak detected. Order: headgasket replacement."
+           << endl;
+    } else {
+      cout << "Check for white smoke from the exhaust. If smoke is present, "
+              "select "
+              "1. Otherwise, select 2 to exit: "
+           << endl;
+      cin >> userIn;
+      if (userIn == 2) {
+        file
+            << "Issue: headgasket leak detected. Order: headgasket replacement."
+            << endl;
+      } else {
+        file << "Issue: suspected headgasket failure. Order: headgasket, "
+                "related gaskets."
+             << endl;
+      }
+    }
+    break;
+  }
+  case 5: {
+    file << "Be aware: engine has holes or other issues." << endl;
+    cout << "Inspect the engine block for visible damage. If no damage is "
+            "found, "
+            "select 1. Otherwise, select 2 to exit: "
+         << endl;
+    cin >> userIn;
+    if (userIn == 2) {
+      file << "Issue: holes in the engine block. Order: engine block repair or "
+              "replacement."
+           << endl;
+    } else {
+      cout << "Check for any other unusual noises or vibrations. If abnormal "
+              "sounds persist, select 1. Otherwise, select 2 to exit: "
+           << endl;
+      cin >> userIn;
+      if (userIn == 2) {
+        file << "Issue: abnormal noises or vibrations. Order: inspect engine "
+                "components for loose parts."
+             << endl;
+      } else {
+        file << "Issue unknown, third-party inspection required." << endl;
+      }
+    }
+    break;
+  }
+  default:
+    cout << "Invalid input, please retry!" << endl;
+    return;
+  }
+  cout << "Issue noted. Items listed to order." << endl;
 }
 
 void transmission(string filepath) {
@@ -416,6 +428,7 @@ void transmission(string filepath) {
 
   default:
     cout << "Invalid input, please retry!" << endl;
+    return;
   }
 }
 
@@ -536,7 +549,6 @@ void drivetrain(string filepath) {
     cout << "Issue noted. Items listed to order." << endl;
     break;
 
-
   case 5:
     file << "Be aware: wheel or tire problems." << endl;
     cout << "Inspect tires for visible damage or excessive wear. If found, "
@@ -565,6 +577,7 @@ void drivetrain(string filepath) {
 
   default:
     cout << "Invalid input, please retry!" << endl;
+    return;
   }
 }
 void bodywork(string filepath) {
@@ -580,9 +593,8 @@ void bodywork(string filepath) {
   cin >> userIn;
   if (userIn == 1) {
     // Diagnose door-related issues
-   {
+    {
       int doorIssue, doorPos;
-      string doorType;
       cout << "Select door-related issue: " << endl
            << "1. Door Alignment" << endl
            << "2. Locks" << endl
@@ -596,59 +608,72 @@ void bodywork(string filepath) {
              << "2. Passenger's door" << endl
              << "3. Rear driver's side door" << endl
              << "4. Rear passenger's side door" << endl
-             << "5. All doors" << endl 
+             << "5. All doors" << endl
              << "6. Trunk/Rear Door" << endl;
         cin >> doorPos;
       }
 
-      switch (doorPos) {
-        case 1: doorType = "Driver's door";
-        break;
-        case 2: doorType = "Passenger's door";
-        break;
-        case 3: doorType = "Rear driver's side door";
-        break;
-        case 4: doorType = "Rear passenger's side door";
-        break;
-        case 5: doorType = "all doors";
-        break;
-        case 6: doorType = "Trunk/Rear Door";
-        break;
-        default: cout << "Invalid input!" << endl;
+      const string doorTypes[] = {"Invalid",
+                                  "Driver's door",
+                                  "Passenger's door",
+                                  "Rear driver's side door",
+                                  "Rear passenger's side door",
+                                  "All doors",
+                                  "Trunk/Rear Door"};
+
+      if (doorPos < 1 || doorPos > 6) {
+        cout << "Invalid input!" << endl;
+        return;
       }
 
       switch (doorIssue) {
       case 1:
-        file << "Issue: " << doorType << " is misaligned. Order: send to third party to fix." << endl;
+        file << "Issue: " << doorTypes[doorPos]
+             << " is misaligned. Order: send to third party to fix." << endl;
         break;
       case 2:
-        file << "Issue: " << doorType << " lock is non-functional. Order: send to third party to fix." << endl;
+        file << "Issue: " << doorTypes[doorPos]
+             << " lock is non-functional. Order: send to third party to fix."
+             << endl;
         break;
       case 3:
-        file << "Issue: " << doorType << " power window(s) are non-functional. Order: motor and window lift assembly." << endl;
+        file << "Issue: " << doorTypes[doorPos]
+             << " power window(s) are non-functional. Order: motor and window "
+                "lift assembly."
+             << endl;
         break;
       case 9:
         break;
       default:
         cout << "Invalid input." << endl;
+        return;
       }
     }
-
   } else if (userIn == 2) {
-    
-  } else if (userIn == 9) {
+    int bodyPanel;
+    cout << "Enter the affected areas:" << endl
+         << "1. Front/rear bumper" << endl
+         << "2. Hood" << endl
+         << "3. Front left/right quarter panel" << endl
+         << "4. Roof assembly" << endl
+         << "5. Rear left/right quarter panel" << endl
+         << "6. Door(s) front" << endl
+         << "7. Door(s) rear" << endl
+         << "8. Trunk/Rear Door" << endl;
+    cin >> bodyPanel;
 
+  } else if (userIn == 9) {
+    return;
   } else {
     cout << "Invalid input!" << endl;
+    return;
   }
 }
 void EngAcc(string filepath) {
   int userIn;
-  ofstream file(filepath, ios::app);
-  if (!file) {
-    cerr << "Error opening diagnostic report file!" << endl;
+  ofstream file = open_file(filepath);
+  if (!file)
     return;
-  }
   cout << "Select engine accessory behavior: " << endl
        << "1. Starter Motor Issues" << endl
        << "2. Alternator Issues" << endl
@@ -782,15 +807,14 @@ void EngAcc(string filepath) {
 
   default:
     cout << "Invalid input, please retry!" << endl;
+    return;
   }
 }
 void exhaust(string filepath) {
   int userIn;
-  ofstream file(filepath, ios::app);
-  if (!file) {
-    cerr << "Error opening diagnostic report file!" << endl;
+  ofstream file = open_file(filepath);
+  if (!file)
     return;
-  }
   cout << "Select exhaust system behavior: " << endl
        << "1. Exhaust Leaks" << endl
        << "2. Clogged Catalytic Converter" << endl
@@ -936,9 +960,11 @@ void exhaust(string filepath) {
 
   default:
     cout << "Invalid input, please retry!" << endl;
+    return;
   }
 }
 void lights(string filepath) {
+  int userIn;
   ofstream file = open_file(filepath);
   if (!file)
     return;
@@ -1026,9 +1052,11 @@ void lights(string filepath) {
 
   default:
     cout << "Invalid input, please retry!" << endl;
+    return;
   }
 }
 void accessories(string filepath) {
+  int userIn;
   ofstream file = open_file(filepath);
   if (!file)
     return;
@@ -1150,6 +1178,7 @@ void accessories(string filepath) {
 
   default:
     cout << "Invalid input, please retry!" << endl;
+    return;
   }
 }
 
