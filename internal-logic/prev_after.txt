@@ -1,6 +1,8 @@
     After shutting vehicle off:
         inspect tires (for new cracks/holes)
-            if a tire has a new crack or hole, put the spare on and replace tire when possible.
+            if a tire has a new crack or hole {
+                    Severity: Major. Fix: Put the spare on and replace tire when possible. Maint. Note: Order tire for vehicle [vehicle #]
+                    cout << "Severity: " << severityNum << "Fix: " << fixText << "Maint. Note: " << maintNote << vehicleNum << endl; 
         if you hit anything or ran over a curb, inspect under car and see if anything is broken
             if a large plastic sheet is dangling, that's your shield and it needs to be reattached. Recommend mechanic or dealer intervention
             if a metal tube/pole is dangling:
