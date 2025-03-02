@@ -1,8 +1,10 @@
-Preventative Maintenace Check for vehicle 123:
-Get an alignment and replace worn tires in the next month.
-Disconnect and clean the battery connectors.
-Do not drive, fix immediately.
-Check tie rods and get an alignment.
-Your suspension is too old, replace suspension.
-Check and replace brake pads.
-Fix if you want.
+Check on vehicle 123 performed on 2025-3-2
+
+Be aware: poor handling or steering.
+Issue: faulty power steering pump. Order: power steering pump replacement.
+Diagnostic report for 123 vehicle:
+Issue reported: Drivetrain/Wheels/Suspension
+Check on vehicle 123 performed on 2025-3-2
+
+Diagnostic report for 123 vehicle:
+Issue reported: Lights/Horn

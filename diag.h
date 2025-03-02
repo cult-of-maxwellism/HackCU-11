@@ -1,5 +1,3 @@
-//
-
 using namespace std;
 
 void engine(string filepath);
