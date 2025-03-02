@@ -1,0 +1,5 @@
+Check on vehicle 0000 performed on 2025-3-2
+
+Diagnostic report for 0000 vehicle:
+Issue reported: Bodywork/Doors
+Diagnostic report for 0000 vehicle:

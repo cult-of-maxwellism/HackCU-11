@@ -1,0 +1,17 @@
+Check on vehicle 456 performed on 2025-3-2
+
+Preventative Maintenace Check for vehicle 456:
+You need to replace the brake pads soon.
+Top off the fluids.
+Battery may be low. Jump start the car.
+Your suspension is too old, replace suspension.
+Flush brake fluid, and check for seized brake cylinders.
+The motor mounts are going or mis-sized, see mechanic to replace.
+Either the clutch is out or the drivetrain is disconnected, tow to mechanic.
+Check on vehicle 456 performed on 2025-3-2
+
+Be aware: there are hard shifting problems.
+Issue: hard shifting caused by low fluid. Order: transmission fluid.
+Diagnostic report for 456 vehicle:
+Issue reported: Transmission
+Diagnostic report for 456 vehicle:

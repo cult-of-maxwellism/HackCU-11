@@ -1,0 +1,9 @@
+Check on vehicle 0000 performed on 2025-3-2
+
+Be aware: there are hard shifting problems.
+Issue: hard shifting caused by low fluid. Order: transmission fluid.
+Diagnostic report for 0000 vehicle:
+Issue reported: Transmission
+Diagnostic report for 0000 vehicle:
+Issue reported: Drivetrain/Wheels/Suspension
+Diagnostic report for 0000 vehicle:
