@@ -1,19 +1,7 @@
-#include <cctype>
-#include <fstream>
-#include <iostream>
-#include <string>
+//
 
 using namespace std;
 
-void performPreventative(string carname, string filepath);
-void checkStart(string filepath);
-void inspectEngine(string filepath);
-void checkBattery(string filepath);
-void checkFluids(string filepath);
-void checkBrakePads(string filepath);
-void inspectTires(string filepath);
-
-void diagnostic(string carname, string filepath);
 void engine(string filepath);
 void transmission(string filepath);
 void drivetrain(string filepath);
@@ -22,295 +10,6 @@ void EngAcc(string filepath);
 void exhaust(string filepath);
 void lights(string filepath);
 void accessories(string filepath);
-
-ofstream open_file(const string &filepath) {
-  ofstream file(filepath, ios::app);
-  if (!file) {
-    cerr << "Error opening diagnostic report file!" << endl;
-  }
-  return file;
-}
-string get_vehicle_number() {
-  // this needs to check each line of the string to ensure vehicle name doesn't
-  // have spaces or \ or / characters -anything file doesn't like
-  string VehicleNum;
-  cout << "Enter vehicle identification number: ";
-  cin >> VehicleNum;
-
-  return VehicleNum;
-}
-
-int main() {
-  int input;
-  string carname, filepath = "./vehicle-directory/";
-  do {
-    cout << "Welcome to the Preventative Maintenance Diagnostic Tool.\n";
-    cout
-        << "Enter 1 for preventative maintenance, 2 to diagnose an issue, or 3 "
-           "to exit:\n";
-
-    cin >> input;
-
-    if (input == 1 && input == 2) {
-      carname = get_vehicle_number();
-      filepath += carname;
-      filepath += ".txt";
-      
-      if (input == 1) {
-        performPreventative(carname, filepath);
-      } else if (input == 2) {
-        diagnostic(carname, filepath);
-      } else {
-        cout << "Exiting Program..." << endl;
-      }
-    }
-  } while (input != 3);
-
-  return 0;
-}
-
-bool getUserInput(const string &prompt) {
-  string input;
-  while (true) {
-    cout << prompt;
-    cin >> input;
-    if (input == "yes") {
-      return true;
-    } else if (input == "no") {
-      return false;
-    } else {
-      cout << "Invalid input. Please enter 'yes' or 'no'.\n";
-    }
-  }
-}
-
-void inspectTires(string filepath) {
-  ofstream file = open_file(filepath);
-  if (!file)
-    return;
-  cout << "Inspecting tires...\n";
-  if (getUserInput("Are the tires unevenly worn? (yes/no): ")) {
-    if (getUserInput("Are the tie rods fine? (yes/no): ")) {
-      cout << "Get an alignment and replace worn tires in the next month.\n";
-      file << ("Get an alignment and replace worn tires in the next month.")
-           << endl;
-    } else {
-      cout << "Replace the tie rods.\n";
-      file << "Replace the tie rods." << endl;
-    }
-  }
-
-  if (getUserInput("Is the tire pressure low but above 10 PSI? (yes/no): ")) {
-    if (getUserInput("Has this issue been noticed before? (yes/no): ")) {
-      cout << "Service the tires within the next month.\n";
-      file << "Service the tires within the next month." << endl;
-    }
-    cout << "Fill the tire with air.\n";
-    file << "Fill the tire with air." << endl;
-  }
-}
-
-void checkBrakePads(string filepath) {
-  ofstream file = open_file(filepath);
-  if (!file)
-    return;
-  cout << "Checking brake pads...\n";
-  if (getUserInput("Are the brake pads worn out? (yes/no): ")) {
-    cout << "You need to replace the brake pads soon.\n";
-    file << "You need to replace the brake pads soon." << endl;
-  }
-}
-
-void checkFluids(string filepath) {
-  ofstream file = open_file(filepath);
-  if (!file)
-    return;
-  cout << "Checking fluids...\n";
-  if (getUserInput("Are any fluid levels low? (yes/no): ")) {
-    cout << "Top off the fluids.\n";
-    file << "Top off the fluids." << endl;
-  }
-}
-
-void checkBattery(string filepath) {
-  ofstream file = open_file(filepath);
-  if (!file)
-    return;
-  cout << "Inspecting battery connectors...\n";
-  if (getUserInput(
-          "Do the battery connectors appear grimy or corroded? (yes/no): ")) {
-    cout << "Disconnect and clean the battery connectors.\n";
-    file << "Disconnect and clean the battery connectors." << endl;
-  }
-}
-
-void inspectEngine(string filepath) {
-  ofstream file = open_file(filepath);
-  if (!file)
-    return;
-  cout << "Checking for oily/grimy residue or leaks...\n";
-  if (getUserInput("Do you see any leaks? (yes/no): ")) {
-    string leakSeverity;
-    cout << "How bad is the leak? (1 - Minor, 2 - Active Moisture, 3 - "
-            "Actively Beading): ";
-    cin >> leakSeverity;
-    if (leakSeverity == "1") {
-      cout << "Fix if you want.\n";
-      file << "Fix if you want." << endl;
-    } else if (leakSeverity == "2") {
-      cout << "Fix within the next month.\n";
-      file << "Fix within the next month." << endl;
-    } else if (leakSeverity == "3") {
-      cout << "Do not drive, fix immediately.\n";
-      file << "Do not drive, fix immediately." << endl;
-    } else {
-      cout << "Invalid input for leak severity. Please enter 1, 2, or 3.\n";
-    }
-  }
-}
-
-void checkStart(string filepath) {
-  ofstream file = open_file(filepath);
-  if (!file)
-    return;
-  cout << "Trying to start vehicle...\n";
-  if (getUserInput("Does the vehicle fail to start? (yes/no): ")) {
-    string starterIssue;
-    cout << "Does the starter chug for a second? (yes/no): ";
-    cin >> starterIssue;
-    if (starterIssue == "yes") {
-      cout << "Battery may be low. Jump start the car.\n";
-      file << "Battery may be low. Jump start the car." << endl;
-    } else if (starterIssue == "no") {
-      cout << "The starter needs to be replaced.\n";
-      file << "The starter needs to be replaced." << endl;
-    } else {
-      cout << "Invalid input. Please enter 'yes' or 'no'.\n";
-    }
-  }
-}
-
-void performPreventative(string carname, string filepath) {
-  ofstream file = open_file(filepath);
-  if (!file)
-    return;
-  if (getUserInput("Do you want to perform a preventative maintenance check? "
-                   "(yes/no): ")) {
-    string checkTime;
-    cout << "Do you want to check before, during, after, or all? ";
-    cin >> checkTime;
-
-    file << "Preventative Maintenace Check for vehicle " << carname << ":"
-         << endl;
-    if (checkTime == "before" || checkTime == "all") {
-      cout << "--- BEFORE DRIVING CHECKS ---\n";
-      inspectTires(filepath);
-      checkBrakePads(filepath);
-      checkFluids(filepath);
-      checkBattery(filepath);
-      inspectEngine(filepath);
-      checkStart(filepath);
-    } else if (checkTime != "during" && checkTime != "after" &&
-               checkTime != "all") {
-      cout << "Invalid input. Please enter 'before', 'during', 'after', or "
-              "'all'.\n";
-      return;
-    }
-
-    if (checkTime == "during" || checkTime == "all") {
-      cout << "--- DURING DRIVING CHECKS ---\n";
-      if (getUserInput("Has the engine suddenly shut off? (yes/no): ")) {
-        cout << "Either you stalled or your engine needs to be replaced.\n";
-        file << "Either you stalled or your engine needs to be replaced."
-             << endl;
-      }
-
-      if (getUserInput(
-              "Does the car not stay in a straight line? (yes/no): ")) {
-        cout << "Check tie rods and get an alignment.\n";
-        file << "Check tie rods and get an alignment." << endl;
-      }
-
-      if (getUserInput("Is the car incredibly bouncy over bumps? (yes/no): ")) {
-        cout << "Your suspension is too old, replace suspension.\n";
-        file << "Your suspension is too old, replace suspension." << endl;
-      }
-
-      if (getUserInput("Does the car pull to the left or right while braking? "
-                       "(yes/no): ")) {
-        cout << "Flush brake fluid, and check for seized brake cylinders.\n";
-        file << "Flush brake fluid, and check for seized brake cylinders."
-             << endl;
-      }
-
-      if (getUserInput("Does the car not stop when braking? (yes/no): ")) {
-        cout << "Check and replace brake pads.\n";
-        file << "Check and replace brake pads." << endl;
-      }
-
-      if (getUserInput(
-              "Does the car shift hard or not change gear? (yes/no): ")) {
-        cout << "Transmission or clutch is going, recommend seeing a "
-                "mechanic.\n";
-        file << "Transmission or clutch is going, recommend seeing a mechanic."
-             << endl;
-      }
-
-      if (getUserInput(
-              "Does the car vibrate heavily when stopped? (yes/no): ")) {
-        cout << "The motor mounts are going or mis-sized, see mechanic to "
-                "replace.\n";
-        file << "The motor mounts are going or mis-sized, see mechanic to "
-                "replace."
-             << endl;
-      }
-
-      if (getUserInput("Does the vehicle not move when pressing on the gas and "
-                       "in gear? (yes/no): ")) {
-        cout << "Either the clutch is out or the drivetrain is disconnected, "
-                "tow to mechanic.\n";
-        file << "Either the clutch is out or the drivetrain is "
-                "disconnected, tow to mechanic."
-             << endl;
-      }
-    }
-
-    if (checkTime == "after" || checkTime == "all") {
-      cout << "--- AFTER DRIVING CHECKS ---\n";
-      if (getUserInput("Do you see any new cracks or holes in the tires? "
-                       "(yes/no): ")) {
-        cout << "Put the spare on and replace the tire when possible.\n";
-        file << "Put the spare on and replace the tire when possible." << endl;
-      }
-
-      if (getUserInput("Did you hit anything or run over a curb? (yes/no): ")) {
-        cout << "Inspect under the car for any damage.\n";
-        file << "Inspect under the car for any damage." << endl;
-      }
-
-      if (getUserInput(
-              "Is there any oily/grimy residue or leaks? (yes/no): ")) {
-        string leakSeverity;
-        cout << "How bad is the leak? (1 - Minor, 2 - Active Moisture, 3 - "
-                "Actively Beading): ";
-        cin >> leakSeverity;
-        if (leakSeverity == "1") {
-          cout << "Fix if you want.\n";
-          file << "Fix if you want." << endl;
-        } else if (leakSeverity == "2") {
-          cout << "Fix within the next month.\n";
-          file << "Fix within the next month." << endl;
-        } else if (leakSeverity == "3") {
-          cout << "Do not drive, fix immediately.\n";
-          file << "Do not drive, fix immediately." << endl;
-        } else {
-          cout << "Invalid input for leak severity. Please enter 1, 2, or "
-                  "3.\n";
-        }
-      }
-    }
-  }
-}
 
 void diagnostic(string carname, string filepath) {
   int part;
@@ -408,8 +107,7 @@ void engine(string filepath) {
            << endl;
       cin >> userIn;
       if (userIn == 2) {
-        file << "Issue: radiator inoperable. Order: radiator, cooling "
-                "assembly."
+        file << "Issue: radiator inoperable. Order: radiator, cooling assembly."
              << endl;
       } else {
         cout << "Check thermostat/water pump. If those are fine, select 1 to "
@@ -454,10 +152,10 @@ void engine(string filepath) {
   }
   case 3: {
     file << "Be aware: the engine is flooded." << endl;
-    cout << "Turn off the engine and wait for a while. Then, try restarting. "
-            "If "
-            "engine starts, select 1. Otherwise, select 2 to exit: "
-         << endl;
+    cout
+        << "Turn off the engine and wait for a while. Then, try restarting. If "
+           "engine starts, select 1. Otherwise, select 2 to exit: "
+        << endl;
     cin >> userIn;
     if (userIn == 2) {
       file << "Issue: flooded engine. Order: spark plugs, air filter." << endl;
@@ -494,9 +192,9 @@ void engine(string filepath) {
            << endl;
       cin >> userIn;
       if (userIn == 2) {
-        file << "Issue: headgasket leak detected. Order: headgasket "
-                "replacement."
-             << endl;
+        file
+            << "Issue: headgasket leak detected. Order: headgasket replacement."
+            << endl;
       } else {
         file << "Issue: suspected headgasket failure. Order: headgasket, "
                 "related gaskets."
@@ -513,8 +211,7 @@ void engine(string filepath) {
          << endl;
     cin >> userIn;
     if (userIn == 2) {
-      file << "Issue: holes in the engine block. Order: engine block repair "
-              "or "
+      file << "Issue: holes in the engine block. Order: engine block repair or "
               "replacement."
            << endl;
     } else {
@@ -565,14 +262,13 @@ void transmission(string filepath) {
               "transmission fluid."
            << endl;
     } else {
-      cout << "If fluid level is fine, check the condition of the fluid. If "
-              "the "
-              "fluid is dirty or burnt, select 1. Otherwise, select 2 to exit."
-           << endl;
+      cout
+          << "If fluid level is fine, check the condition of the fluid. If the "
+             "fluid is dirty or burnt, select 1. Otherwise, select 2 to exit."
+          << endl;
       cin >> userIn;
       if (userIn == 2) {
-        file << "Issue: dirty or burnt transmission fluid. Order: "
-                "transmission "
+        file << "Issue: dirty or burnt transmission fluid. Order: transmission "
                 "fluid flush."
              << endl;
       } else {
@@ -612,8 +308,7 @@ void transmission(string filepath) {
 
   case 3:
     file << "Be aware: there are transmission fluid leaks." << endl;
-    cout << "Inspect the transmission pan and gasket for visible leaks. If "
-            "the "
+    cout << "Inspect the transmission pan and gasket for visible leaks. If the "
             "pan or gasket is faulty, select 1. Otherwise, select 2 to exit."
          << endl;
     cin >> userIn;
@@ -647,8 +342,7 @@ void transmission(string filepath) {
               "transmission fluid flush."
            << endl;
     } else {
-      cout << "If the fluid is fine, check for loose or worn components in "
-              "the "
+      cout << "If the fluid is fine, check for loose or worn components in the "
               "transmission. If components are worn, select 1. Otherwise, "
               "select 2 to exit."
            << endl;
@@ -747,14 +441,12 @@ void drivetrain(string filepath) {
               "tie rods replacement."
            << endl;
     } else {
-      cout << "Check for problems with the power steering pump. If the pump "
-              "is "
+      cout << "Check for problems with the power steering pump. If the pump is "
               "faulty, select 1. Otherwise, select 2 to exit."
            << endl;
       cin >> userIn;
       if (userIn == 2) {
-        file << "Issue: faulty power steering pump. Order: power steering "
-                "pump "
+        file << "Issue: faulty power steering pump. Order: power steering pump "
                 "replacement."
              << endl;
       } else {
@@ -771,8 +463,7 @@ void drivetrain(string filepath) {
          << endl;
     cin >> userIn;
     if (userIn == 2) {
-      file << "Issue: wheel alignment problems. Order: wheel alignment "
-              "service."
+      file << "Issue: wheel alignment problems. Order: wheel alignment service."
            << endl;
     } else {
       cout << "Inspect suspension components (ball joints, control arms, "
@@ -780,8 +471,7 @@ void drivetrain(string filepath) {
            << endl;
       cin >> userIn;
       if (userIn == 2) {
-        file << "Issue: worn suspension components affecting alignment. "
-                "Order: "
+        file << "Issue: worn suspension components affecting alignment. Order: "
                 "suspension components replacement."
              << endl;
       } else {
@@ -798,8 +488,7 @@ void drivetrain(string filepath) {
          << endl;
     cin >> userIn;
     if (userIn == 2) {
-      file << "Issue: damaged shocks or struts. Order: shock/strut "
-              "replacement."
+      file << "Issue: damaged shocks or struts. Order: shock/strut replacement."
            << endl;
     } else {
       cout << "Check the suspension bushings for wear. If worn, select 1. "
@@ -825,8 +514,7 @@ void drivetrain(string filepath) {
     if (userIn == 2) {
       file << "Issue: damaged or worn tires. Order: new tires." << endl;
     } else {
-      cout << "Check tire pressure. If pressure is low or inconsistent, "
-              "select "
+      cout << "Check tire pressure. If pressure is low or inconsistent, select "
               "1. Otherwise, select 2 to exit."
            << endl;
       cin >> userIn;
@@ -978,8 +666,7 @@ void EngAcc(string filepath) {
 
   case 2:
     file << "Be aware: alternator issues." << endl;
-    cout << "Check for dimming lights, electrical problems, or battery "
-            "warning "
+    cout << "Check for dimming lights, electrical problems, or battery warning "
             "lights. If present, select 1. Otherwise, select 2 to exit."
          << endl;
     cin >> userIn;
@@ -991,8 +678,7 @@ void EngAcc(string filepath) {
            << endl;
       cin >> userIn;
       if (userIn == 2) {
-        file << "Issue: alternator belt worn or damaged. Order: new "
-                "alternator "
+        file << "Issue: alternator belt worn or damaged. Order: new alternator "
                 "belt."
              << endl;
       } else {
@@ -1011,8 +697,7 @@ void EngAcc(string filepath) {
     if (userIn == 2) {
       file << "Issue: weak or dead battery. Order: new battery." << endl;
     } else {
-      cout << "Inspect battery terminals for corrosion. If corrosion is "
-              "found, "
+      cout << "Inspect battery terminals for corrosion. If corrosion is found, "
               "clean or replace the battery terminals. Select 1. Otherwise, "
               "select 2 to exit."
            << endl;
@@ -1107,14 +792,13 @@ void exhaust(string filepath) {
               "replacement."
            << endl;
     } else {
-      cout << "Check the exhaust manifold and piping for visible damage or "
-              "holes. If damage is found, select 1. Otherwise, select 2 to "
-              "exit."
-           << endl;
+      cout
+          << "Check the exhaust manifold and piping for visible damage or "
+             "holes. If damage is found, select 1. Otherwise, select 2 to exit."
+          << endl;
       cin >> userIn;
       if (userIn == 2) {
-        file << "Issue: damaged exhaust manifold or piping. Order: "
-                "replacement "
+        file << "Issue: damaged exhaust manifold or piping. Order: replacement "
                 "exhaust manifold or pipes."
              << endl;
       } else {
@@ -1127,8 +811,7 @@ void exhaust(string filepath) {
   case 2:
     file << "Be aware: clogged catalytic converter." << endl;
     cout << "Check for decreased engine performance, poor acceleration, or a "
-            "rotten egg smell. If any of these symptoms are present, select "
-            "1. "
+            "rotten egg smell. If any of these symptoms are present, select 1. "
             "Otherwise, select 2 to exit."
          << endl;
     cin >> userIn;
@@ -1154,8 +837,7 @@ void exhaust(string filepath) {
 
   case 3:
     file << "Be aware: damaged muffler." << endl;
-    cout << "Listen for loud exhaust noises or rattling sounds coming from "
-            "the "
+    cout << "Listen for loud exhaust noises or rattling sounds coming from the "
             "rear of the vehicle. If such sounds are heard, select 1. "
             "Otherwise, select 2 to exit."
          << endl;
@@ -1252,8 +934,7 @@ void lights(string filepath) {
   switch (userIn) {
   case 1:
     file << "Be aware: headlight issues." << endl;
-    cout << "Check if the headlight is dim, flickering, or not working. If "
-            "any "
+    cout << "Check if the headlight is dim, flickering, or not working. If any "
             "issues are noticed, select 1. Otherwise, select 2 to exit."
          << endl;
     cin >> userIn;
@@ -1266,8 +947,7 @@ void lights(string filepath) {
            << endl;
       cin >> userIn;
       if (userIn == 2) {
-        file << "Issue: faulty bulb, wiring, or fuse. Order: new bulb, "
-                "wiring, "
+        file << "Issue: faulty bulb, wiring, or fuse. Order: new bulb, wiring, "
                 "or fuse."
              << endl;
       } else {
@@ -1284,12 +964,10 @@ void lights(string filepath) {
          << endl;
     cin >> userIn;
     if (userIn == 2) {
-      file << "Issue: non-functioning brake light. Order: new brake light "
-              "bulb."
+      file << "Issue: non-functioning brake light. Order: new brake light bulb."
            << endl;
     } else {
-      cout << "Inspect the brake light bulb, wiring, and fuse. If any of "
-              "these "
+      cout << "Inspect the brake light bulb, wiring, and fuse. If any of these "
               "are faulty, select 1. Otherwise, select 2 to exit."
            << endl;
       cin >> userIn;
@@ -1318,9 +996,9 @@ void lights(string filepath) {
            << endl;
       cin >> userIn;
       if (userIn == 2) {
-        file << "Issue: blown fuse or damaged wiring. Order: new fuse or "
-                "wiring."
-             << endl;
+        file
+            << "Issue: blown fuse or damaged wiring. Order: new fuse or wiring."
+            << endl;
       } else {
         file << "Issue unknown, third-party inspection required." << endl;
       }
@@ -1385,8 +1063,7 @@ void accessories(string filepath) {
               "wiring inspection."
            << endl;
     } else {
-      cout << "Inspect the dash light fuse, wiring, and connections. If any "
-              "of "
+      cout << "Inspect the dash light fuse, wiring, and connections. If any of "
               "these are faulty, select 1. Otherwise, select 2 to exit."
            << endl;
       cin >> userIn;
@@ -1403,8 +1080,7 @@ void accessories(string filepath) {
 
   case 3:
     file << "Be aware: climate control or HVAC issues." << endl;
-    cout << "Check if the climate control or HVAC system isn't blowing air, "
-            "is "
+    cout << "Check if the climate control or HVAC system isn't blowing air, is "
             "too warm or cold, or isn't working at all. If there is an issue, "
             "select 1. Otherwise, select 2 to exit."
          << endl;
@@ -1414,10 +1090,10 @@ void accessories(string filepath) {
               "inspection or repair."
            << endl;
     } else {
-      cout << "Inspect the blower motor, fuse, and climate control settings. "
-              "If "
-              "any of these are faulty, select 1. Otherwise, select 2 to exit."
-           << endl;
+      cout
+          << "Inspect the blower motor, fuse, and climate control settings. If "
+             "any of these are faulty, select 1. Otherwise, select 2 to exit."
+          << endl;
       cin >> userIn;
       if (userIn == 2) {
         file << "Issue: faulty blower motor or fuse. Order: new blower motor "
@@ -1433,8 +1109,7 @@ void accessories(string filepath) {
   case 4:
     file << "Be aware: power window or lock issues." << endl;
     cout << "Check if the power windows or locks aren't functioning properly. "
-            "If the issue is identified, select 1. Otherwise, select 2 to "
-            "exit."
+            "If the issue is identified, select 1. Otherwise, select 2 to exit."
          << endl;
     cin >> userIn;
     if (userIn == 2) {

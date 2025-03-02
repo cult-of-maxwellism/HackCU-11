@@ -1,0 +1,8 @@
+Preventative Maintenace Check for vehicle 123:
+Get an alignment and replace worn tires in the next month.
+Disconnect and clean the battery connectors.
+Do not drive, fix immediately.
+Check tie rods and get an alignment.
+Your suspension is too old, replace suspension.
+Check and replace brake pads.
+Fix if you want.

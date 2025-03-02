@@ -5,7 +5,6 @@
 
 using namespace std;
 
-string get_vehicle_number();
 void engine(string filepath);
 void transmission(string filepath);
 void drivetrain(string filepath);
@@ -15,13 +14,21 @@ void exhaust(string filepath);
 void lights(string filepath);
 void accessories(string filepath);
 
-// Helper function to open a file and handle failure
 ofstream open_file(const string &filepath) {
   ofstream file(filepath, ios::app);
   if (!file) {
     cerr << "Error opening diagnostic report file!" << endl;
   }
   return file;
+}
+string get_vehicle_number() {
+  // this needs to check each line of the string to ensure vehicle name doesn't
+  // have spaces or \ or / characters -anything file doesn't like
+  string VehicleNum;
+  cout << "Enter vehicle identification number: ";
+  cin >> VehicleNum;
+
+  return VehicleNum;
 }
 
 void diagnostic(string carname, string filepath) {
@@ -88,35 +95,6 @@ void diagnostic(string carname, string filepath) {
   cout << "Diagnostic report saved to " << filepath << endl;
   file.close();
 }
-
-int main() {
-  cout << "Welcome to the Preventative Maintenance Diagnostic Tool.\n";
-  cout << "Enter 1 for preventative maintenance or 2 to diagnose an issue: ";
-
-  int input;
-  cin >> input;
-
-  while (input != 1 && input != 2) {
-    cout << "Invalid input. Please enter 1 for Preventative Maintenance, 2 to "
-            "diagnose an issue, or 3 to exit: ";
-    cin >> input;
-  }
-
-  string carname = get_vehicle_number();
-  string filepath;
-  filepath = "./vehicle-directory/";
-  filepath += carname;
-
-  if (input != 2) {
-    cout << "Not avalible here...";
-    // preventative(carname,filepath);
-  } else {
-    diagnostic(carname, filepath);
-  }
-
-  return 0;
-}
-
 void engine(string filepath) {
   int userIn;
   ofstream file = open_file(filepath);
@@ -277,7 +255,6 @@ void engine(string filepath) {
   }
   cout << "Issue noted. Items listed to order." << endl;
 }
-
 void transmission(string filepath) {
   int userIn;
   ofstream file = open_file(filepath);
@@ -431,7 +408,6 @@ void transmission(string filepath) {
     return;
   }
 }
-
 void drivetrain(string filepath) {
   int userIn;
   ofstream file(filepath, ios::app);
@@ -1180,14 +1156,4 @@ void accessories(string filepath) {
     cout << "Invalid input, please retry!" << endl;
     return;
   }
-}
-
-string get_vehicle_number() {
-  // this needs to check each line of the string to ensure vehicle name doesn't
-  // have spaces or \ or / characters -anything file doesn't like
-  string VehicleNum;
-  cout << "Enter vehicle identification number: ";
-  cin >> VehicleNum;
-
-  return VehicleNum;
 }
