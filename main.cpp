@@ -9,9 +9,9 @@
 
 using namespace std;
 
-void diagnostic(string type, string part){
+void diagnostic(string type){
 
-    unordered_set<string> valid_parts = {"engine", "transmission", "drivetrain", "wheels", "suspension", "doors", "windows", "accessories", "engine accessories", "exhaust system", "lights", "horn"};
+    int part;
     ofstream file("diagnostic_report.txt", ios::app); // Open in append mode
     cout << "Diagnosing issue for " << type << " vehicle. \n";
         cout << "What is having trouble? Enter the number of the option wanted\n";
@@ -32,37 +32,34 @@ void diagnostic(string type, string part){
             return;
         }
 
-        while (valid_parts.find(part) == valid_parts.end())
+        while (part)
         {
             cout << "Invalid part, please enter a valid part: ";
             cin >> part;
         }
 
-        if (part == "engine")
-        {
-        }
-        else if (part == "transmission")
-        {
-        }
-        else if (part == "drivetrain" || part == "wheels" || part == "suspension")
-        {
-        }
-        else if (part == "doors" || part == "windows")
-        {
-        }
-        else if (part == "accessories")
-        {
-        }
-        else if (part == "engine accessories")
-        {
-        }
-        else if (part == "exhaust system")
-        {
-        }
-        else if (part == "lights" || part == "horn")
-        {
-        }
+        switch(part)
+{
+            case 1:
+                
+            case 2:
 
+            case 3:
+
+            case 4:
+
+            case 5:
+
+            case 6:
+
+            case 7:
+
+            case 8:
+
+            default:
+            break;
+}
+        return;
 }
 bool preventative_helper(bool x)
 {
@@ -72,7 +69,7 @@ bool preventative_helper(bool x)
 
 void preventative(string type)
 {
-    cout <<
+    return;
 }
 
 int main()
@@ -111,7 +108,7 @@ int main()
         preventative(fuel_type);
 
     case 2:
-        diagnostic(fuel_type, part);
+        diagnostic(fuel_type);
     default:
         cout << "Invalid input, please enter 1 or 2.\n";
         break;
