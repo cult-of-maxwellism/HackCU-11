@@ -1,0 +1,29 @@
+    After shutting vehicle off:
+        inspect tires (for new cracks/holes)
+            if a tire has a new crack or hole, put the spare on and replace tire when possible.
+        if you hit anything or ran over a curb, inspect under car and see if anything is broken
+            if a large plastic sheet is dangling, that's your shield and it needs to be reattached. Recommend mechanic or dealer intervention
+            if a metal tube/pole is dangling:
+                if it's the dead center of your car and looks like it was supposed to be connected to the rear wheels
+                    it's your drivetrain and needs to be replaced. Do not drive.
+                if it's a thinner, hollow-looking pole (possibly with oblong protusions)
+                    it's your exhaust and should be reattached to the bottom
+                if smaller bars near the front (steering) tires appear snapped or disconnected,
+                    that's your tie/steering rods. Drive very carefully and get service immediately
+                if the drivetrain or rod that runs between any two tires appears bent
+                    get service immediately.
+        Open hood and
+            check for oily/grimy residue or leaks
+                if present, how bad is it?
+                    class 1 - this is minor signs of residue, and usually not expensive. General rule: fix if you want
+                    class 2 - this is when moisture is actively present. General rule: fix within the next month
+                    class 3 - this is when liquid is actively beading. General rule: only drive short distances, fix before driving > 2 miles.
+                if the leak is around the top of the engine, likely a headgasket leak.
+                    In this case, class 1 and 2 should be monitored closely and fixed within the month and week. Do not drive with class 3.
+                if the leak is around any of the rubber hoses, it's likely coolant.
+                    class rules apply
+                if the leak is near the transmission or anywhere on the engine below the head gasket
+                    check for visible holes and cracks. If there are holes/cracks, do not drive and get service immediately.
+                    class rules apply with no holes/cracks present
+    Once vehicle is cold (1+hr later):
+        Check fluid levels again. If levels are noticably different/lower, monitor those levels closely. If trend persists across 3 days, recommend service.
