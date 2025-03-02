@@ -9,6 +9,72 @@
 
 using namespace std;
 
+void diagnostic(string type, string part){
+
+    unordered_set<string> valid_parts = {"engine", "transmission", "drivetrain", "wheels", "suspension", "doors", "windows", "accessories", "engine accessories", "exhaust system", "lights", "horn"};
+    ofstream file("diagnostic_report.txt", ios::app); // Open in append mode
+    cout << "Diagnosing issue for " << type << " vehicle. \n";
+        cout << "What is having trouble? Enter the number of the option wanted\n";
+        cout << "1. Engine\n";
+        cout << "2. Transmission\n";
+        cout << "3. Drivetrain/wheels/suspension\n";
+        cout << "4. Doors/windows\n";
+        cout << "5. Accessories\n";
+        cout << "6. Engine Accessories\n";
+        cout << "7. Exhaust system\n";
+        cout << "8. Lights/Horn\n";
+
+        cin >> part;
+
+        if (!file)
+        {
+            cerr << "Error opening file!" << endl;
+            return;
+        }
+
+        while (valid_parts.find(part) == valid_parts.end())
+        {
+            cout << "Invalid part, please enter a valid part: ";
+            cin >> part;
+        }
+
+        if (part == "engine")
+        {
+        }
+        else if (part == "transmission")
+        {
+        }
+        else if (part == "drivetrain" || part == "wheels" || part == "suspension")
+        {
+        }
+        else if (part == "doors" || part == "windows")
+        {
+        }
+        else if (part == "accessories")
+        {
+        }
+        else if (part == "engine accessories")
+        {
+        }
+        else if (part == "exhaust system")
+        {
+        }
+        else if (part == "lights" || part == "horn")
+        {
+        }
+
+}
+bool preventative_helper(bool x)
+{
+    x = true;
+    return x;
+}
+
+void preventative(string type)
+{
+    cout <<
+}
+
 int main()
 {
     cout << "Welcome to the Preventative Maintenance Diagnostic Tool.\n\n\n";
@@ -37,80 +103,15 @@ int main()
                   { return tolower(c); });
     }
 
-    unordered_set<string> valid_parts = {"engine", "transmission", "drivetrain", "wheels", "suspension", "doors", "windows", "accessories", "engine accessories", "exhaust system", "lights", "horn"};
-
-    string part;
-    ofstream file("diagnostic_report.txt", ios::app); // Open in append mode
+   
 
     switch (input)
     {
     case 1:
-        cout << "Performing preventative maintenance for " << fuel_type << " vehicle.\n";
-        cout << "Please open the hood and find the engine. Check for the following items:\n";
-        break;
+        preventative(fuel_type);
 
     case 2:
-        cout << "Diagnosing issue for " << fuel_type << " vehicle.\n";
-        cout << "What is having trouble?\n";
-        cout << "Engine\n";
-        cout << "Transmission\n";
-        cout << "Drivetrain/wheels/suspension\n";
-        cout << "Doors/windows\n";
-        cout << "Accessories\n";
-        cout << "Engine Accessories\n";
-        cout << "Exhaust system\n";
-        cout << "Lights/Horn\n";
-
-        cin >> part;
-      
-
-        if (!file)
-        {
-            cerr << "Error opening file!" << endl;
-            return 1;
-        }
-
-        while (valid_parts.find(part) == valid_parts.end())
-        {
-            cout << "Invalid part, please enter a valid part: ";
-            cin >> part;
-        }
-
-        if (part == "engine")
-        {
-            file << "Checking the engine.\n"; // Only output to file for engine
-        }
-        else if (part == "transmission")
-        {
-            file << "Checking the transmission.\n"; // Only output to file for transmission
-        }
-        else if (part == "drivetrain" || part == "wheels" || part == "suspension")
-        {
-            file << "Checking the drivetrain, wheels, or suspension.\n"; // Only output to file for drivetrain/wheels/suspension
-        }
-        else if (part == "doors" || part == "windows")
-        {
-            file << "Checking the doors or windows.\n"; // Only output to file for doors/windows
-        }
-        else if (part == "accessories")
-        {
-            file << "Checking the accessories.\n"; // Only output to file for accessories
-        }
-        else if (part == "engine accessories")
-        {
-            file << "Checking the engine accessories.\n"; // Only output to file for engine accessories
-        }
-        else if (part == "exhaust system")
-        {
-            file << "Checking the exhaust system.\n"; // Only output to file for exhaust system
-        }
-        else if (part == "lights" || part == "horn")
-        {
-            file << "Checking the lights or horn.\n"; // Only output to file for lights/horn
-        }
-
-        break;
-
+        diagnostic(fuel_type, part);
     default:
         cout << "Invalid input, please enter 1 or 2.\n";
         break;
