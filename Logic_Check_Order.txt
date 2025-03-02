@@ -118,6 +118,19 @@ If preventative:
         Check fluid levels again. If levels are noticably different/lower, monitor those levels closely. If trend persists across 3 days, recommend service.
 
 Diagnostic:
-First, check functionality:
-    Is item present (if visible)?
-    If you attempt to start the vehicle, does the vehicle start?
+    Engine 
+        list 3 to 5 common engine issues and fixes
+    transmission
+        list 3 to 5 common transmission issues and fixes
+    drivetrain
+        list 3 to 5 common drivetrain issues and fixes
+    doors/windows
+        list 3 to 5 common doors/windows issues and fixes
+    engine accessories (cooling system, fuel pump, starter, alternator)
+        list 5 to 7 common engine accessory issues and fixes
+    lights/Horn
+        list 3 to 5 common light/horn issues and fixes
+    exhaust
+        list 3 to 5 common exhaust issues and fixes
+
+
