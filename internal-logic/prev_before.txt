@@ -1,0 +1,62 @@
+before starting:
+        inspect tires (for tread depth, tire pressure, visibly uneven wear, visible cracks/holes, visible metal/missing chunks on surface that makes road contact)
+            if tire is unevenly worn
+                check tie rods.
+                    If they appear to be fine, get an alignment and replace worn tires in the next month.
+                    otherwise, replace the tie rods.
+            if tire pressure is low but above 10,
+                If this is a issue that's been noticed before, service in the next month.
+                fill the tire with air.
+            across tires for non air pressure:
+                if one tire is bad, throw on the spare and recommend servicing that tire within two weeks.
+                If more than one is bad, then recommend not driving and service.
+            chunks are missing, large holes are present, or tread has less than 1mm of depth, recommend not driving and purchasing new tires
+            if you see part of (but not all of) Abe's head, then recommend replacement in the next month
+            if something is stuck in the tire, do not remove, but go to nearest tire shop and service tire.
+        check brake pads (shove a straw into brakes until you hit the pads, then mark the straw and measure depth)
+            subtract .2 inches from measurement, and
+                if remaining measurement is less than 1/4th inch, replace soon.
+                If remaining is less than 1/8th inch, recommend not driving and replacing immediately.
+        get under car and see if anything is broken
+            if a large plastic sheet is dangling, that's your heat/debris shield and it needs to be reattached. Recommend mechanic or dealer intervention
+            if a metal tube/pole is dangling:
+                if it's the dead center of your car and looks like it was supposed to be connected to the rear wheels
+                    it's your drivetrain and needs to be replaced. Do not drive.
+                if it's a thinner, hollow-looking pole (possibly with oblong protusions)
+                    it's your exhaust and should be reattached to the bottom
+                if smaller bars near the front (steering) tires appear snapped or disconnected,
+                    that's your tie/steering rods. Drive very carefully and get service immediately
+                if the drivetrain or rod that runs between any two tires appears bent
+                    get service immediately.
+        Open hood and
+            check fluids 
+                if low: fill
+                if antifreeze/coolant is low, warn user to wait until engine is cold to fill fluids
+            inspect battery connectors
+                if they appear to be grimy or corroded, disconnect and clean.
+                if severly corroded, replace as soon as possible
+            check for oily/grimy residue or leaks
+                if present, how bad is it?
+                    class 1 - this is minor signs of residue, and usually not expensive. General rule: fix if you want
+                    class 2 - this is when moisture is actively present. General rule: fix within the next month
+                    class 3 - this is when liquid is actively beading. General rule: only drive short distances, fix before driving > 2 miles.
+                if the leak is around the top of the engine, likely a headgasket leak.
+                    In this case, class 1 and 2 should be monitored closely and fixed within the month and week. Do not drive with class 3.
+                if the leak is around any of the rubber hoses, it's likely coolant.
+                    class rules apply
+                if the leak is near the transmission or anywhere on the engine below the head gasket
+                    check for visible holes and cracks. If there are holes/cracks, do not drive and get service immediately.
+                    class rules apply with no holes/cracks present
+        finally: start vehicle.
+            if vehicle doesn't start, how does it fail to start?
+                if the starter chugs for a second:
+                    battery may be low, jump the car using a jump kit or cables try again
+                    if that doesn't work, fuel pump needs to be replaced.
+                if the engine stalls:
+                    ensure you are in park (or neutural, for manual transmission)
+                    if that doesn't work, the engine may be flooded. Lightly push the gas pedal while trying to start again.
+                        if that doesn't work, replace fuel pump
+                if the starter makes no noise:
+                    Your starter needs to be replaced. To drive it to the nearest mechanic shop, try hitting the starter with a wrench or similar and start again.
+                                                        If you do this more than about twice, the starter will destroy the engine.
+
