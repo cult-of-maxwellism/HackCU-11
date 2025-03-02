@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <cctype>
+#include <diagnostic.hpp>
 
 using namespace std;
 
@@ -27,7 +28,7 @@ void diagnostic()
         return;
     }
 
-    cout << "Diagnosing issue for " <<  << " vehicle.\n";
+    cout << "Diagnosing issue for " << " vehicle.\n";
     cout << "Select the system experiencing trouble:\n";
     cout << "1. Engine\n";
     cout << "2. Transmission\n";
@@ -46,7 +47,7 @@ void diagnostic()
         cin >> part;
     }
 
-    file << "Diagnostic report for " <<  << " vehicle:\n";
+    file << "Diagnostic report for " << ve << " vehicle:\n";
     switch (part)
     {
     case 1:
