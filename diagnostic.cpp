@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <cctype>
+#include <diagnostic.hpp>
 
 using namespace std;
 
@@ -27,7 +28,7 @@ void diagnostic()
         return;
     }
 
-    cout << "Diagnosing issue for " << type << " vehicle.\n";
+    cout << "Diagnosing issue for " << " vehicle.\n";
     cout << "Select the system experiencing trouble:\n";
     cout << "1. Engine\n";
     cout << "2. Transmission\n";
@@ -46,7 +47,7 @@ void diagnostic()
         cin >> part;
     }
 
-    file << "Diagnostic report for " <<  << " vehicle:\n";
+    file << "Diagnostic report for " << ve << " vehicle:\n";
     switch (part)
     {
     case 1:
@@ -78,29 +79,7 @@ void diagnostic()
         cout << "Check for leaks, catalytic converter issues, and unusual noises.\n";
         break;
     case 8:
-        file << "Issue reported: Lights/Horn\n";int main()
-        {
-            cout << "Welcome to the Preventative Maintenance Diagnostic Tool.\n";
-            cout << "Enter 1 for preventative maintenance or 2 to diagnose an issue: ";
-        
-            int input;
-            cin >> input;
-        
-            while (input != 1 && input != 2)
-            {
-                cout << "Invalid input. Please enter 1 for preventative maintenance or 2 to diagnose an issue: ";
-                cin >> input;
-            }
-        
-            string fuel_type = get_valid_vehicle_type();
-        
-            if (input == 1)
-                preventative(fuel_type);
-            else
-                diagnostic(fuel_type);
-        
-            return 0;
-        }
+        file << "Issue reported: Lights/Horn\n";
         
         cout << "Inspect headlight bulbs, fuses, and horn functionality.\n";
         break;
@@ -108,21 +87,4 @@ void diagnostic()
 
     cout << "Diagnostic report saved to 'diagnostic_report.txt'.\n";
     file.close();
-}
-
-int main()
-{
-    cout << "Welcome to the Preventative Maintenance Diagnostic Tool.\n";
-    cout << "Enter 1 for preventative maintenance or 2 to diagnose an issue: ";
-
-    int input;
-    cin >> input;
-
-    while (input != 1 && input != 2)
-    {
-        cout << "Invalid input. Please enter 1 for preventative maintenance or 2 to diagnose an issue: ";
-        cin >> input;
-    }
-
-    return 0;
 }
