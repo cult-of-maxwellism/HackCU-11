@@ -53,9 +53,31 @@ If preventative:
                     class rules apply with no holes/cracks present
         finally: start vehicle.
             if vehicle doesn't start, how does it fail to start?
-                if a starter chugs for a second:
+                if the starter chugs for a second:
                     battery may be low, jump the car using a jump kit or cables try again
+                    if that doesn't work, fuel pump needs to be replaced.
+                if the engine stalls:
+                    ensure you are in park (or neutural, for manual transmission)
+                    if that doesn't work, the engine may be flooded. Lightly push the gas pedal while trying to start again.
+                        if that doesn't work, replace fuel pump
+                if the starter makes no noise:
+                    Your starter needs to be replaced. To drive it to the nearest mechanic shop, try hitting the starter with a wrench or similar and start again.
+                                                        If you do this more than about twice, the starter will destroy the engine.
+
     While vehicle's running/driving:
+        if the engine suddently shuts off:
+            you either stalled (shift better if you're in a manual or replace transmission if in a automatic) or your engine needs to be replaced.
+        if the car doesn't stay in a straight line
+            check tie rods
+                if they're bent, you can attempt to straighten them to get home (not recommended), but replace ASAP.
+                if not, get an alignment
+        if the car is incredibly "bouncy" over bumps:
+            Your suspension is too old, replace suspension
+        if the car pulls to the left or right while braking:
+            flush brake fluid, if that doesn't fix it
+            check for (and replace) seized brake cylinders, if none are siezed check and replace brake fluid pump
+
+
 
     After shutting vehicle off:
         inspect tires (for new cracks/holes)
