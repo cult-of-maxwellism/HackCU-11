@@ -15,17 +15,8 @@ void EngAcc(string filepath);
 void exhaust(string filepath);
 void lights(string filepath);
 void accessories(string filepath);
-
-int UserInput(int valid) {
-  int userIn;
-  cin >> userIn;
-
-  while (userIn < 0 || userIn > valid) {
-    cout << "Invalid input! Please select from 1 to " << valid << endl;
-    cin >> userIn;
-  }
-  return userIn;
-}
+int UserInput(int valid);
+void fileInput(int valid);
 
 // main diagnostic menu function
 void diagnostic(string carname, string filepath) {

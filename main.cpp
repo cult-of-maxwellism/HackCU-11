@@ -10,6 +10,8 @@ using namespace std;
 
 ofstream open_file(const string &filepath);
 string get_vehicle_number();
+int UserInput(int valid);
+
 
 void performPreventative(string carname, string filepath);
 void checkStart(string filepath);
