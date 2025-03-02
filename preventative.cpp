@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+#include "univ-function.cpp"
+
 using namespace std;
 
 void performPreventative();
@@ -13,6 +15,7 @@ void checkBrakePads();
 void inspectTires();
 
 // Helper function to handle user input and conditionally log the output
+
 bool getUserInput(const string &prompt) {
   string input;
   while (true) {
@@ -28,110 +31,70 @@ bool getUserInput(const string &prompt) {
   }
 }
 
-ofstream open_file(const string &filepath) {
-  ofstream file(filepath, ios::app);
-  if (!file) {
-    cerr << "Error opening diagnostic report file!" << endl;
-  }
-  return file;
-}
-string get_vehicle_number() {
-  // this needs to check each line of the string to ensure vehicle name doesn't
-  // have spaces or \ or / characters -anything file doesn't like
-  string VehicleNum;
-  cout << "Enter vehicle identification number: ";
-  cin >> VehicleNum;
-
-  return VehicleNum;
-}
-
-int main() {
-    cout << "Welcome to the Preventative Maintenance Diagnostic Tool.\n";
-    cout << "Enter 1 for preventative maintenance, 2 to diagnose an issue, or 3 "
-            "to exit:\n";
-  
-    int input;
-    cin >> input;
-  
-    while (input != 1 && input != 2) {
-      cout << "Invalid input. Please enter 1 for Preventative Maintenance, 2 to "
-              "diagnose an issue, or 3 to exit: ";
-      cin >> input;
-    }
-  
-    string carname = get_vehicle_number();
-    string filepath;
-    filepath = "./vehicle-directory/";
-    filepath += carname;
-    filepath += ".txt";
-  
-    if (input == 1) {
-      performPreventative();
-      // preventative(carname,filepath);
-    } else {
-      //diagnostic(carname, filepath);
-    }
-  
-    return 0;
-  }
-
-void writeToFile(const string &content) {
-  ofstream outputFile;
-  outputFile.open("preventative_results.txt", ios::app);
-  if (outputFile.is_open()) {
-    outputFile << content << endl;
-  }
-  outputFile.close();
-}
-
-void inspectTires() {
+void inspectTires(string filepath) {
+  ofstream file = open_file(filepath);
+  if (!file)
+    return;
   cout << "Inspecting tires...\n";
   if (getUserInput("Are the tires unevenly worn? (yes/no): ")) {
     if (getUserInput("Are the tie rods fine? (yes/no): ")) {
       cout << "Get an alignment and replace worn tires in the next month.\n";
-      writeToFile("Get an alignment and replace worn tires in the next month.");
+      file << ("Get an alignment and replace worn tires in the next month.")
+           << endl;
     } else {
       cout << "Replace the tie rods.\n";
-      writeToFile("Replace the tie rods.");
+      file << "Replace the tie rods." << endl;
     }
   }
 
   if (getUserInput("Is the tire pressure low but above 10 PSI? (yes/no): ")) {
     if (getUserInput("Has this issue been noticed before? (yes/no): ")) {
       cout << "Service the tires within the next month.\n";
-      writeToFile("Service the tires within the next month.");
+      file << "Service the tires within the next month." << endl;
     }
     cout << "Fill the tire with air.\n";
-    writeToFile("Fill the tire with air.");
+    file << "Fill the tire with air." << endl;
   }
 }
 
-void checkBrakePads() {
+void checkBrakePads(string filepath) {
+  ofstream file = open_file(filepath);
+  if (!file)
+    return;
   cout << "Checking brake pads...\n";
   if (getUserInput("Are the brake pads worn out? (yes/no): ")) {
     cout << "You need to replace the brake pads soon.\n";
-    writeToFile("You need to replace the brake pads soon.");
+    file << "You need to replace the brake pads soon." << endl;
   }
 }
 
-void checkFluids() {
+void checkFluids(string filepath) {
+  ofstream file = open_file(filepath);
+  if (!file)
+    return;
   cout << "Checking fluids...\n";
   if (getUserInput("Are any fluid levels low? (yes/no): ")) {
     cout << "Top off the fluids.\n";
-    writeToFile("Top off the fluids.");
+    file << "Top off the fluids." << endl;
   }
 }
 
-void checkBattery() {
+void checkBattery(string filepath) {
+  ofstream file = open_file(filepath);
+  if (!file)
+    return;
   cout << "Inspecting battery connectors...\n";
   if (getUserInput(
           "Do the battery connectors appear grimy or corroded? (yes/no): ")) {
     cout << "Disconnect and clean the battery connectors.\n";
-    writeToFile("Disconnect and clean the battery connectors.");
+    file << "Disconnect and clean the battery connectors." << endl;
   }
 }
 
-void inspectEngine() {
+void inspectEngine(string filepath) {
+  ofstream file = open_file(filepath);
+  if (!file)
+    return;
   cout << "Checking for oily/grimy residue or leaks...\n";
   if (getUserInput("Do you see any leaks? (yes/no): ")) {
     string leakSeverity;
@@ -140,20 +103,23 @@ void inspectEngine() {
     cin >> leakSeverity;
     if (leakSeverity == "1") {
       cout << "Fix if you want.\n";
-      writeToFile("Fix if you want.");
+      file << "Fix if you want." << endl;
     } else if (leakSeverity == "2") {
       cout << "Fix within the next month.\n";
-      writeToFile("Fix within the next month.");
+      file << "Fix within the next month." << endl;
     } else if (leakSeverity == "3") {
       cout << "Do not drive, fix immediately.\n";
-      writeToFile("Do not drive, fix immediately.");
+      file << "Do not drive, fix immediately." << endl;
     } else {
       cout << "Invalid input for leak severity. Please enter 1, 2, or 3.\n";
     }
   }
 }
 
-void checkStart() {
+void checkStart(string filepath) {
+  ofstream file = open_file(filepath);
+  if (!file)
+    return;
   cout << "Trying to start vehicle...\n";
   if (getUserInput("Does the vehicle fail to start? (yes/no): ")) {
     string starterIssue;
@@ -161,31 +127,36 @@ void checkStart() {
     cin >> starterIssue;
     if (starterIssue == "yes") {
       cout << "Battery may be low. Jump start the car.\n";
-      writeToFile("Battery may be low. Jump start the car.");
+      file << "Battery may be low. Jump start the car." << endl;
     } else if (starterIssue == "no") {
       cout << "The starter needs to be replaced.\n";
-      writeToFile("The starter needs to be replaced.");
+      file << "The starter needs to be replaced." << endl;
     } else {
       cout << "Invalid input. Please enter 'yes' or 'no'.\n";
     }
   }
 }
 
-void performPreventative() {
+void performPreventative(string carname, string filepath) {
+  ofstream file = open_file(filepath);
+  if (!file)
+    return;
   if (getUserInput("Do you want to perform a preventative maintenance check? "
                    "(yes/no): ")) {
     string checkTime;
     cout << "Do you want to check before, during, after, or all? ";
     cin >> checkTime;
 
+    file << "Preventative Maintenace Check for vehicle " << carname << ":"
+         << endl;
     if (checkTime == "before" || checkTime == "all") {
       cout << "--- BEFORE DRIVING CHECKS ---\n";
-      inspectTires();
-      checkBrakePads();
-      checkFluids();
-      checkBattery();
-      inspectEngine();
-      checkStart();
+      inspectTires(filepath);
+      checkBrakePads(filepath);
+      checkFluids(filepath);
+      checkBattery(filepath);
+      inspectEngine(filepath);
+      checkStart(filepath);
     } else if (checkTime != "during" && checkTime != "after" &&
                checkTime != "all") {
       cout << "Invalid input. Please enter 'before', 'during', 'after', or "
@@ -197,67 +168,71 @@ void performPreventative() {
       cout << "--- DURING DRIVING CHECKS ---\n";
       if (getUserInput("Has the engine suddenly shut off? (yes/no): ")) {
         cout << "Either you stalled or your engine needs to be replaced.\n";
-        writeToFile("Either you stalled or your engine needs to be replaced.");
+        file << "Either you stalled or your engine needs to be replaced."
+             << endl;
       }
 
       if (getUserInput(
               "Does the car not stay in a straight line? (yes/no): ")) {
         cout << "Check tie rods and get an alignment.\n";
-        writeToFile("Check tie rods and get an alignment.");
+        file << "Check tie rods and get an alignment." << endl;
       }
 
       if (getUserInput("Is the car incredibly bouncy over bumps? (yes/no): ")) {
         cout << "Your suspension is too old, replace suspension.\n";
-        writeToFile("Your suspension is too old, replace suspension.");
+        file << "Your suspension is too old, replace suspension." << endl;
       }
 
       if (getUserInput("Does the car pull to the left or right while braking? "
                        "(yes/no): ")) {
         cout << "Flush brake fluid, and check for seized brake cylinders.\n";
-        writeToFile("Flush brake fluid, and check for seized brake cylinders.");
+        file << "Flush brake fluid, and check for seized brake cylinders."
+             << endl;
       }
 
       if (getUserInput("Does the car not stop when braking? (yes/no): ")) {
         cout << "Check and replace brake pads.\n";
-        writeToFile("Check and replace brake pads.");
+        file << "Check and replace brake pads." << endl;
       }
 
       if (getUserInput(
               "Does the car shift hard or not change gear? (yes/no): ")) {
         cout << "Transmission or clutch is going, recommend seeing a "
                 "mechanic.\n";
-        writeToFile(
-            "Transmission or clutch is going, recommend seeing a mechanic.");
+        file << "Transmission or clutch is going, recommend seeing a mechanic."
+             << endl;
       }
 
       if (getUserInput(
               "Does the car vibrate heavily when stopped? (yes/no): ")) {
         cout << "The motor mounts are going or mis-sized, see mechanic to "
                 "replace.\n";
-        writeToFile("The motor mounts are going or mis-sized, see mechanic to "
-                    "replace.");
+        file << "The motor mounts are going or mis-sized, see mechanic to "
+                "replace."
+             << endl;
       }
 
       if (getUserInput("Does the vehicle not move when pressing on the gas and "
                        "in gear? (yes/no): ")) {
         cout << "Either the clutch is out or the drivetrain is disconnected, "
                 "tow to mechanic.\n";
-        writeToFile("Either the clutch is out or the drivetrain is "
-                    "disconnected, tow to mechanic.");
+        file << "Either the clutch is out or the drivetrain is "
+                "disconnected, tow to mechanic."
+             << endl;
       }
     }
 
     if (checkTime == "after" || checkTime == "all") {
       cout << "--- AFTER DRIVING CHECKS ---\n";
-      if (getUserInput(
-              "Do you see any new cracks or holes in the tires? (yes/no): ")) {
+      if (getUserInput("Do you see any new cracks or holes in the tires? "
+                       "(yes/no): ")) {
         cout << "Put the spare on and replace the tire when possible.\n";
-        writeToFile("Put the spare on and replace the tire when possible.");
+        file << "Put the spare on and replace the tire when possible." << endl;
       }
 
       if (getUserInput("Did you hit anything or run over a curb? (yes/no): ")) {
         cout << "Inspect under the car for any damage.\n";
-        writeToFile("Inspect under the car for any damage.");
+        file << "Inspect under the car for any damage." << endl;
       }
 
       if (getUserInput(
@@ -268,15 +243,16 @@ void performPreventative() {
         cin >> leakSeverity;
         if (leakSeverity == "1") {
           cout << "Fix if you want.\n";
-          writeToFile("Fix if you want.");
+          file << "Fix if you want." << endl;
         } else if (leakSeverity == "2") {
           cout << "Fix within the next month.\n";
-          writeToFile("Fix within the next month.");
+          file << "Fix within the next month." << endl;
         } else if (leakSeverity == "3") {
           cout << "Do not drive, fix immediately.\n";
-          writeToFile("Do not drive, fix immediately.");
+          file << "Do not drive, fix immediately." << endl;
         } else {
-          cout << "Invalid input for leak severity. Please enter 1, 2, or 3.\n";
+          cout << "Invalid input for leak severity. Please enter 1, 2, or "
+                  "3.\n";
         }
       }
     }
