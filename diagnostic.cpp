@@ -1,6 +1,5 @@
 #include <cctype>
-#include <fstream>
-#include <iostream>
+#include <diagnostic.hpp>
 
 using namespace std;
 
@@ -36,7 +35,6 @@ void diagnostic(string carname, string filepath) {
   ofstream file = open_file(filepath);
   if (!file)
     return;
-
   cout << "Diagnosing issue for vehicle " << carname << ".\n";
   cout << "Select the system experiencing trouble:\n"
        << "1. Engine\n"
@@ -47,7 +45,6 @@ void diagnostic(string carname, string filepath) {
        << "6. Exhaust System\n"
        << "7. Lights/Horn\n"
        << "8. Accessories\n";
-
   cin >> part;
 
   while (part < 1 || part > 8) {
@@ -539,6 +536,7 @@ void drivetrain(string filepath) {
     cout << "Issue noted. Items listed to order." << endl;
     break;
 
+
   case 5:
     file << "Be aware: wheel or tire problems." << endl;
     cout << "Inspect tires for visible damage or excessive wear. If found, "
@@ -582,7 +580,7 @@ void bodywork(string filepath) {
   cin >> userIn;
   if (userIn == 1) {
     // Diagnose door-related issues
-    {
+   {
       int doorIssue, doorPos;
       string doorType;
       cout << "Select door-related issue: " << endl
