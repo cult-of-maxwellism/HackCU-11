@@ -6,14 +6,13 @@
 
 using namespace std;
 
-void performPreventative();
-void checkStart();
-void inspectEngine();
-void checkBattery();
-void checkFluids();
-void checkBrakePads();
-void inspectTires();
-
+void performPreventative(string carname, string filepath);
+void checkStart(string filepath);
+void inspectEngine(string filepath);
+void checkBattery(string filepath);
+void checkFluids(string filepath);
+void checkBrakePads(string filepath);
+void inspectTires(string filepath);
 // Helper function to handle user input and conditionally log the output
 
 bool getUserInput(const string &prompt) {
@@ -258,10 +257,3 @@ void performPreventative(string carname, string filepath) {
     }
   }
 }
-
-/*
-int main() {
-    performPreventative();
-    return 0;
-}
-*/

@@ -28,6 +28,9 @@ void sendData() {
         while ((line = reader.readLine()) != null) {
           println("C++ says: " + line);
         }
+        
+        writer.println(num);
+        writer.flush();
         pb.waitFor();
     } catch (Exception e) {
         e.printStackTrace();
