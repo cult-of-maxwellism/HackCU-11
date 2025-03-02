@@ -12,7 +12,7 @@ int main() {
     filepath += filename;
     // open file, 
     // and define the openmode to output and truncate file if it exists before
-    ofstream fout(filepath.c_str(), ios::trunc);
+    ofstream fout(filepath.c_str(), ios::app);
     // try to write
     if (fout) fout << "Hello World!\n";
     else cout << "failed to open file\n";
